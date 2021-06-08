@@ -6,6 +6,13 @@ const mysql = require('mysql');
 const config = require('../config');
 const connection = mysql.createConnection(config);
 
+connection.connect(function(err) {
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+console.log('Connected to the MySQL server');
+});
+
 const salt = 10
 
 exports.signup = (req, res, next) => {
@@ -18,29 +25,29 @@ exports.signup = (req, res, next) => {
         bcrypt.hash(req.body.password, salt)
         .then(hash => {
 
-            const sql = `SET @pseudo="${req.body.pseudo}", @email=AES_ENCRYPT('${req.body.email}','${process.env.ENCODAGE}'), @password="${hash}";`
-            connection.query(sql, (error, results, fields) => { /* ENCRYPT email */
-
+            const sql = `SET @pseudo="${req.body.pseudo}", @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @password="${hash}";`
+            connection.query(sql, (error, results, fields) => {
+                
                 if (error) {
                     res.status(400).json({message: 'erreur de variable'})
                 }
                 else if(results){
-
-                    const sql = `XXXX`;
+                    
+                    const sql = `CALL signup(@pseudo, @email, @password)`;
                     connection.query(sql, (error, result, fields) => {
-                        let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+                        let userSelect = result[0]
                     
                         if (error || userSelect[0].Status === "Error") {
                             res.status(400).json({message: userSelect[0].Response})
                         }
-                        else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
+                        else if(result){ 
                             res.status(200).json({
                                 pseudo: userSelect[0].pseudo,
                                 userId: userSelect[0].id,
                                 token: jwt.sign({
-                                    userId: userSelect[0].id}, `${process.env.CLE}`,
+                                    userId: userSelect[0].id}, 'CLE TOKEN SECRET',
                                     { expiresIn: '24h'}),
-                                role: userSelect[0].Roles
+                                role: userSelect[0].roles
                             })
                         }
                     });
@@ -62,14 +69,14 @@ exports.login = (req, res, next) => {
         }
         else if(results){
 
-            const sql = `XXX`;
+            const sql = `SELECT id, pseudo, password, roles FROM user WHERE pseudo=@pseudo`;
             connection.query(sql, (error, results, fields) => {
 
                 if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
                     res.status(400).json({message: "Ce pseudo n'existe pas"})
                 }
                 else if(results.length == 1){ /* Si utilisateur existe, renvoie un tableau avec une seule donnée */
-                    
+                    console.log(results[0])
                     bcrypt.compare(req.body.password, results[0].password)
                     .then(valid => {
                         if (!valid){

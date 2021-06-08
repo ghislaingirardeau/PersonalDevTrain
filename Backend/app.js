@@ -1,7 +1,7 @@
 const express = require('express')
 
 const users = require('./routes/user')
-/* const topicRoutes = require('./routes/topic') */
+const feelings = require('./routes/feeling')
 
 const app = express()
 
@@ -16,6 +16,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/api/', users)
-/* app.use('/api/sujet', topicRoutes) */
+app.use('/api/feeling', feelings)
 
 module.exports = app

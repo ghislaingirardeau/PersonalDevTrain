@@ -18,4 +18,7 @@ let config = {
     database: `${process.env.DATABASE}`
 }
 
+/* ALTER USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+flush privileges; POUR AVOIR LES DROITS DE CONNECTIONS*/
+
 module.exports = config; /* Changer ici le choix de la connection */

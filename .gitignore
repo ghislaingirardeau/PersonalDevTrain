@@ -1,5 +1,3 @@
 backend/node_modules
 backend/env.dev.
 
-frontend/GoodDeeds/node_modules
-frontend/GoodDeeds/.nuxt

@@ -1,0 +1,92 @@
+{
+    "positive": [
+        {
+            "posId": 1,
+            "feeling_pos": "happy",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h13"
+        },
+        {
+            "posId": 2,
+            "feeling_pos": "motivated",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "posId": 3,
+            "feeling_pos": "released",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "posId": 2,
+            "feeling_pos": "motivated",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "posId": 3,
+            "feeling_pos": "released",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "posId": 2,
+            "feeling_pos": "motivated",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "posId": 3,
+            "feeling_pos": "released",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        }
+    ],
+    "totalPositif": 3,
+    "negative": [
+        {
+            "negId": 1,
+            "feeling_neg": "angry",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h26"
+        },
+        {
+            "negId": 2,
+            "feeling_neg": "jealous",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h33"
+        },
+        {
+            "negId": 3,
+            "feeling_neg": "sad",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "negId": 4,
+            "feeling_neg": "stress",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        },
+        {
+            "negId": 3,
+            "feeling_neg": "sad",
+            "pseudo": "test1",
+            "user_id": 3,
+            "Date": "le mardi 8 juin 2021 à 16h34"
+        }
+    ],
+    "totalNegatif": 4
+}

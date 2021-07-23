@@ -5,20 +5,11 @@ export default {
        }
     },
     props: {
-        getPositive : Object,
-        getNegative : Object
+        emotion : Array,
+        
     },
     mounted (){
         
-        /* Recupere toutes les emotions dans un tableau */
-        let emotion = []
-        this.getNegative.forEach(element => {
-            emotion.push(element.feeling_neg)
-        });
-        this.getPositive.forEach(element => {
-            emotion.push(element.feeling_pos)
-        });
-
         let index = 0 /* envoie l'index a l'objet */
         const object = document.getElementsByClassName(`Vector`)
         /* Ajout une class appear a chaque index tant que index est inferieur au nombre d'emotions */
@@ -26,30 +17,23 @@ export default {
             object[index].classList.add("appear")
             object[index].style.animationDelay = `${index * 0.2}s`;
             /* envoie une couleur suivant emotion negative */
-            if(index < this.getNegative.length) {
-                switch (emotion[index]) {
-                    case 'angry': object[index].setAttribute('fill', 'red')
-                    break;
-                    case 'jealous': object[index].setAttribute('fill', 'orange')
-                    break;
-                    case 'stress': object[index].setAttribute('fill', '#ed5a15')
-                    break;
-                    case 'sad' : object[index].setAttribute('fill', 'yellow')
-                }
-            }
-            /* envoie une couleur suivant emotion positive */
-            else {
-                switch (emotion[index]) {
-                    case 'happy': object[index].setAttribute('fill', 'green')
-                    break;
-                    case 'motivated': object[index].setAttribute('fill', 'blue')
-                    break;
-                    case 'released': object[index].setAttribute('fill', 'pink')
-                }
+            switch (this.emotion[index]) {
+                case 'angry': object[index].setAttribute('fill', 'red')
+                break;
+                case 'jealous': object[index].setAttribute('fill', 'orange')
+                break;
+                case 'stress': object[index].setAttribute('fill', '#ed5a15')
+                break;
+                case 'sad' : object[index].setAttribute('fill', 'yellow')
+                break;
+                case 'happy': object[index].setAttribute('fill', 'green')
+                break;
+                case 'motivated': object[index].setAttribute('fill', 'blue')
+                break;
+                case 'released': object[index].setAttribute('fill', 'pink')
             }
             index++
-        } while(index < (emotion.length))
-
+        } while(index < (this.emotion.length))
     }
 }
 </script>

@@ -4,9 +4,9 @@
   <NuxtLink to="/">Connexion</NuxtLink>
     <feelingManage />
 
-  <h2>Mon arbre d'emotions</h2> {{reload}}
+  <h2>Mon arbre d'emotions</h2> {{emotion}}
 
-  <tree :getPositive="positive" :getNegative="negative" />
+  <tree :emotion="emotion" />
 </div>
   
 </template>
@@ -16,8 +16,7 @@
 export default {
     data () {
       return {
-        positive: Object,
-        negative: Object,
+        emotion: [],
         reload: false
       }
     },
@@ -32,9 +31,13 @@ export default {
             if(response.ok) {
                 response.json()
                 .then(data => {
-                    this.positive = data.positive
-                    console.log(typeof(this.positive))
-                    this.negative = data.negative
+                  /* Recupere toutes les emotions dans un tableau */
+                    data.negative.forEach(element => {
+                        this.emotion.push(element.feeling_neg)
+                    });
+                    data.positive.forEach(element => {
+                        this.emotion.push(element.feeling_pos)
+                    });
                 })
             } else { /* sinon j'envoie une erreur */
               response.json()

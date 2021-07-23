@@ -1,10 +1,10 @@
 <template>
-<div>
+<div :key="reload">
   <h1>Mon tableau de bord émotionnel</h1>
-  <NuxtLink to="/">Home page</NuxtLink>
+  <NuxtLink to="/">Connexion</NuxtLink>
     <feelingManage />
 
-  <h2>Mon arbre d'emotions</h2>
+  <h2>Mon arbre d'emotions</h2> {{reload}}
 
   <tree :getPositive="positive" :getNegative="negative" />
 </div>
@@ -16,8 +16,9 @@
 export default {
     data () {
       return {
-        positive: Array,
-        negative: Array,
+        positive: Object,
+        negative: Object,
+        reload: false
       }
     },
     mounted () {
@@ -32,6 +33,7 @@ export default {
                 response.json()
                 .then(data => {
                     this.positive = data.positive
+                    console.log(typeof(this.positive))
                     this.negative = data.negative
                 })
             } else { /* sinon j'envoie une erreur */

@@ -5,8 +5,8 @@ export default {
        }
     },
     props: {
-        getPositive : Array,
-        getNegative : Array
+        getPositive : Object,
+        getNegative : Object
     },
     mounted (){
         

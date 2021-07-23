@@ -2,12 +2,12 @@
     <main>
         <h2>Ton émotion</h2>
         
-        <ul v-for="item in emotionsList.list" :key="item" >
-            <li>
+        <form>
+            <fieldset v-for="item in emotionsList.positive" :key="item" >
                 <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
                 <label :for="item">{{item}}</label>
-            </li>
-        </ul>
+            </fieldset>
+        </form>
         
         <button @click="postFeeling">valider</button>
         
@@ -24,8 +24,13 @@ export default {
                 feeling: undefined,
                 user_id: Number
             },
-            emotionsList : emotions
+            emotionsList : emotions,
+            
         }
+    },
+    mounted() {
+       
+ 
     },
     
     methods: {

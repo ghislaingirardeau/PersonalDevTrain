@@ -1,1 +1,8 @@
-{"list": ["angry", "sad", "jealous", "stress", "happy", "motivated", "released"]}
+{
+    "positive": ["love", "joy", "suprise", "grateful", "happy", "motivated", "released",
+        "sentimental", "affectionate", "romantic", "enchanted", "euphoric", "excited", "optimistic", "proud", "cheerful", "content", "peaceful",
+        "moved", "amazed", "stunned"],
+    "negative": ["scared", "terrifier", "insecure", "nervous", "horrfied", "enraged", "exasperated", "irrtable",
+        "jealous", "disgusted", "hurt", "unhappy", "disappointed", "shameful", "lonely", "gloomy",
+        "confused", "overcome"]
+}

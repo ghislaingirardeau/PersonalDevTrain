@@ -10,7 +10,7 @@
     <label for="password" >Mot de passe</label>
     <input for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
       
-    <div class="col-12">
+    <div >
       <button @click="postLogin">Envoyer</button>
       <p>{{errorMessage}}</p>
     </div>
@@ -53,6 +53,7 @@ export default {
             sessionStorage.setItem('pseudo', data.pseudo)
             sessionStorage.setItem('role', data.role)
             window.open('/home', '_self')
+
           })
         } else { /* sinon j'envoie une erreur */
           res.json()

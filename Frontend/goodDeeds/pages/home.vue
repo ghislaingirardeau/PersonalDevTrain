@@ -1,6 +1,9 @@
 <template>
 <div>
   <h1>Mon tableau de bord émotionnel</h1>
+  <NuxtLink to="/">Home page</NuxtLink>
+    <feelingManage />
+
   <h2>Mon arbre d'emotions</h2>
 
   <tree :getPositive="positive" :getNegative="negative" />
@@ -13,8 +16,8 @@
 export default {
     data () {
       return {
-        positive: Object,
-        negative: Object,
+        positive: Array,
+        negative: Array,
       }
     },
     mounted () {

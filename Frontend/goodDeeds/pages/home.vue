@@ -9,17 +9,36 @@
 </template>
 
 <script>
-import feelings from '@/store/API'
 
 export default {
     data () {
       return {
-        positive: feelings.positive,
-        negative: feelings.negative,
+        positive: Object,
+        negative: Object,
       }
     },
-
-
+    mounted () {
+        fetch("http://localhost:3000/api/feeling/", {
+            method: "GET",
+            headers: {
+            "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if(response.ok) {
+                response.json()
+                .then(data => {
+                    this.positive = data.positive
+                    this.negative = data.negative
+                })
+            } else { /* sinon j'envoie une erreur */
+              response.json()
+              .then(data => {
+                console.log(data) /* renvoie error du backend sur le frontend */
+              })
+            }
+        })
+    }
 }
 </script>
 

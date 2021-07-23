@@ -9,8 +9,8 @@ export default {
         getNegative : Array
     },
     mounted (){
-        /* console.log(this.getPositive.find(elt => elt ="happy")) */
         
+        /* Recupere toutes les emotions dans un tableau */
         let emotion = []
         this.getNegative.forEach(element => {
             emotion.push(element.feeling_neg)
@@ -26,24 +26,25 @@ export default {
             object[index].classList.add("appear")
             /* envoie une couleur suivant emotion negative */
             if(index < this.getNegative.length) {
-                if(emotion[index] === 'angry') {
-                    object[index].setAttribute('fill', 'orange')
-                } else if(emotion[index] === 'jealous') {
-                    object[index].setAttribute('fill', 'red')
-                } else if(emotion[index] === 'sad') {
-                    object[index].setAttribute('fill', 'grey')
-                } else if(emotion[index] === 'stress') {
-                    object[index].setAttribute('fill', 'yellow')
+                console.log(emotion[index])
+                switch (emotion[index]) {
+                    case 'angry': object[index].setAttribute('fill', 'red')
+                    break;
+                    case 'jealous': object[index].setAttribute('fill', 'orange')
+                    break;
+                    case 'stress': object[index].setAttribute('fill', '#ed5a15')
+                    break;
+                    case 'sad' : object[index].setAttribute('fill', 'yellow')
                 }
             }
             /* envoie une couleur suivant emotion positive */
             else {
-                if(emotion[index] === 'happy') {
-                    object[index].setAttribute('fill', 'blue')
-                } else if(emotion[index] === 'motivated') {
-                    object[index].setAttribute('fill', 'green')
-                } else if(emotion[index] === 'released') {
-                    object[index].setAttribute('fill', 'pink')
+                switch (emotion[index]) {
+                    case 'happy': object[index].setAttribute('fill', 'green')
+                    break;
+                    case 'motivated': object[index].setAttribute('fill', 'blue')
+                    break;
+                    case 'released': object[index].setAttribute('fill', 'pink')
                 }
             }
             index++

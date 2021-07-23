@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Mon tableau de bord émotionnel</h1>
-  <h2>Positive</h2>
+  <h2>Mon arbre d'emotions</h2>
 
   <tree :getPositive="positive" :getNegative="negative" />
 </div>
@@ -15,7 +15,7 @@ export default {
   data () {
     return {
       positive: feelings.positive,
-      negative: feelings.negative
+      negative: feelings.negative,
     }
   },
 

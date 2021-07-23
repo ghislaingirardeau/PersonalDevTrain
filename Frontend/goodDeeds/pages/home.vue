@@ -1,13 +1,13 @@
 <template>
-<div :key="reload">
+<main >
   <h1>Mon tableau de bord émotionnel</h1>
   <NuxtLink to="/">Connexion</NuxtLink>
     <feelingManage />
 
-  <h2>Mon arbre d'emotions</h2> {{emotion}}
+  <h2>Mon arbre d'emotions</h2>
 
-  <tree :emotion="emotion" />
-</div>
+  <tree :emotion="emotion" :key="reload"/>
+</main>
   
 </template>
 

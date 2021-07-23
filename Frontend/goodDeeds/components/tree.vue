@@ -1,4 +1,6 @@
 <script>
+
+
 export default {
     data() {
        return {
@@ -6,13 +8,12 @@ export default {
     },
     props: {
         emotion : Array,
-        
     },
     mounted (){
-        
         let index = 0 /* envoie l'index a l'objet */
         const object = document.getElementsByClassName(`Vector`)
         /* Ajout une class appear a chaque index tant que index est inferieur au nombre d'emotions */
+        
         do {
             object[index].classList.add("appear")
             object[index].style.animationDelay = `${index * 0.2}s`;

@@ -24,9 +24,9 @@ export default {
         /* Ajout une class appear a chaque index tant que index est inferieur au nombre d'emotions */
         do {
             object[index].classList.add("appear")
+            object[index].style.animationDelay = `${index * 0.2}s`;
             /* envoie une couleur suivant emotion negative */
             if(index < this.getNegative.length) {
-                console.log(emotion[index])
                 switch (emotion[index]) {
                     case 'angry': object[index].setAttribute('fill', 'red')
                     break;

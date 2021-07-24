@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h2>Ton émotion</h2>
+        <h2>Ton émotion positive</h2>
         
         <form>
             <fieldset v-for="item in emotionsList.positive" :key="item" >
@@ -8,8 +8,17 @@
                 <label :for="item">{{item}}</label>
             </fieldset>
         </form>
+
+        <h2>Ton émotion negative</h2>
+
+        <form>
+            <fieldset v-for="item in emotionsList.negative" :key="item" >
+                <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
+                <label :for="item">{{item}}</label>
+            </fieldset>
+        </form>
         
-        <button @click="postFeeling">valider</button>
+        <button @click="postFeeling">valider</button> 
         
     </main>
 </template>

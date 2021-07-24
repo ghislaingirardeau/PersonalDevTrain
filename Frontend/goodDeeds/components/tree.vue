@@ -19,19 +19,17 @@ export default {
             object[index].style.animationDelay = `${index * 0.2}s`;
             /* envoie une couleur suivant emotion negative */
             switch (this.emotion[index]) {
-                case 'angry': object[index].setAttribute('fill', 'red')
+                case 'fear': object[index].setAttribute('fill', '#d2232a')
                 break;
-                case 'jealous': object[index].setAttribute('fill', 'orange')
+                case 'anger': object[index].setAttribute('fill', '#dc8124')
                 break;
-                case 'stress': object[index].setAttribute('fill', '#ed5a15')
+                case 'sadness': object[index].setAttribute('fill', '#b3a731')
                 break;
-                case 'sad' : object[index].setAttribute('fill', 'yellow')
+                case 'surprise': object[index].setAttribute('fill', '#448c36')
                 break;
-                case 'happy': object[index].setAttribute('fill', 'green')
+                case 'joy': object[index].setAttribute('fill', '#0e76bd')
                 break;
-                case 'motivated': object[index].setAttribute('fill', 'blue')
-                break;
-                case 'released': object[index].setAttribute('fill', 'pink')
+                case 'love': object[index].setAttribute('fill', '#754a9a')
             }
             index++
         } while(index < (this.emotion.length))

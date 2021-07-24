@@ -19,17 +19,30 @@ export default {
             object[index].style.animationDelay = `${index * 0.2}s`;
             /* envoie une couleur suivant emotion negative */
             switch (this.emotion[index]) {
-                case 'fear': object[index].setAttribute('fill', '#d2232a')
+                case 'fear': object[index].setAttribute('fill', '#F74E19')
                 break;
-                case 'anger': object[index].setAttribute('fill', '#dc8124')
+                case 'jealous': object[index].setAttribute('fill', '#EBA523')
                 break;
-                case 'sadness': object[index].setAttribute('fill', '#b3a731')
+                case 'anger': object[index].setAttribute('fill', '#BB1EF7')
                 break;
-                case 'surprise': object[index].setAttribute('fill', '#448c36')
+                case 'anger 2': object[index].setAttribute('fill', '#D419A6')
                 break;
-                case 'joy': object[index].setAttribute('fill', '#0e76bd')
+                case 'sadness': object[index].setAttribute('fill', '#4322D4')
                 break;
-                case 'love': object[index].setAttribute('fill', '#754a9a')
+                case 'sadness 2': object[index].setAttribute('fill', '#2854F7')
+                break;
+                case 'surprise': object[index].setAttribute('fill', '#27BEF5')
+                break;
+                case 'surprise 2': object[index].setAttribute('fill', '#1CD4BA')
+                break;
+                case 'joy': object[index].setAttribute('fill', '#1CD41D')
+                break;
+                case 'happy': object[index].setAttribute('fill', '#2AEB7E')
+                break;
+                case 'love': object[index].setAttribute('fill', '#F5EB20')
+                break;
+                case 'love 2': object[index].setAttribute('fill', '#2AEB7E')
+                
             }
             index++
         } while(index < (this.emotion.length))

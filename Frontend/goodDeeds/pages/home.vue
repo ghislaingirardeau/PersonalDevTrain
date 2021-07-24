@@ -1,5 +1,5 @@
 <template>
-<main >
+<main align-items-center>
   <h1>Mon tableau de bord émotionnel</h1>
   <NuxtLink to="/">Connexion</NuxtLink>
     <feelingManage />

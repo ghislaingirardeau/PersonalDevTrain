@@ -1,26 +1,45 @@
 <template>
-    <main>
-        <h2>Ton émotion positive</h2>
-        
-        <form>
-            <fieldset v-for="item in emotionsList.positive" :key="item" >
-                <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
-                <label :for="item">{{item}}</label>
-            </fieldset>
-        </form>
+        <aside class="row align-items-center">
 
-        <h2>Ton émotion negative</h2>
+            <div class="col-6 text-center">
+                <h2 >Sélectionne une émotion :</h2>
+                <p>{{postEmotion.feeling}}</p>
+                <div class="col-2 align-middle">
+                    <button v-show="postEmotion.feeling" @click="postFeeling">valider</button> 
+                </div>
+            </div>
+            
 
-        <form>
-            <fieldset v-for="item in emotionsList.negative" :key="item" >
-                <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
-                <label :for="item">{{item}}</label>
-            </fieldset>
-        </form>
+            <div class="col-2 text-center">
+
+                <b-button v-b-modal.modal-1 class="mb-3">Positive</b-button>
+
+                <b-modal id="modal-1" title="Liste emotion positive">
+                  <b-form-row>
+                      <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
+                          <label :for="item" class="radio">{{item}}</label>
+                      </b-col>
+                  </b-form-row>
+                </b-modal>
+            </div>
+
+            <div class="col-2 text-center">
+                
+                <b-button v-b-modal.modal-2 class="mb-3">Negative</b-button>
         
-        <button @click="postFeeling">valider</button> 
-        
-    </main>
+                <b-modal id="modal-2" title="Liste emotion negative">
+                  <form>
+                      <fieldset v-for="item in emotionsList.negative" :key="item" >
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
+                          <label :for="item">{{item}}</label>
+                      </fieldset>
+                  </form>
+                </b-modal>
+            </div>
+
+        </aside>
+
 </template>
 
 <script>
@@ -74,7 +93,31 @@ export default {
             } else {
                 console.log('select one')
             }
-        }
+        },
     }
 }
 </script>
+
+<style>
+.radio{
+    position: relative;
+}
+.radio::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input:checked{
+    border: 3px solid red;
+}
+.radio--diplay{
+   
+}
+.radio__container{
+    border: 2px solid green;
+}
+</style>

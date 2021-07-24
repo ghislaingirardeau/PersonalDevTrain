@@ -1,12 +1,13 @@
 <template>
 <main align-items-center>
+  <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
   <h1>Mon tableau de bord émotionnel</h1>
-  <NuxtLink to="/">Connexion</NuxtLink>
+
     <feelingManage />
 
   <h2>Mon arbre d'emotions</h2>
 
-  <tree :emotion="emotion" :key="reload"/>
+  <tree v-if="dataLoad" :emotion="emotion" :key="reload"/>
 </main>
   
 </template>
@@ -17,10 +18,12 @@ export default {
     data () {
       return {
         emotion: [],
-        reload: false
+        reload: false,
+        dataLoad: false
       }
     },
     mounted () {
+
         fetch("http://localhost:3000/api/feeling/", {
             method: "GET",
             headers: {
@@ -38,6 +41,7 @@ export default {
                     data.positive.forEach(element => {
                         this.emotion.push(element.feeling_pos)
                     });
+                    this.dataLoad = true
                 })
             } else { /* sinon j'envoie une erreur */
               response.json()
@@ -46,6 +50,15 @@ export default {
               })
             }
         })
+    },
+    methods: {
+      disconnect() {
+        console.log('suppr data')
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('userId')
+        sessionStorage.removeItem('pseudo')
+        sessionStorage.removeItem('role')
+      }
     }
 }
 </script>

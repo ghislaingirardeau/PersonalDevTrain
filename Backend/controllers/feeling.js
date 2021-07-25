@@ -6,7 +6,7 @@ const connection = mysql.createConnection(config)
 
 exports.allFeeling = (req, res, next) => { 
     
-    const sql = `CALL all_feeling`
+    const sql = `CALL user_feeling("${req.body.user_id}")`
     connection.query(sql, (error, results, fields) => {
 
         if (error) {

@@ -4,7 +4,7 @@ const authentification = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.get('/', feeling.allFeeling)
+router.post('/', authentification, feeling.allFeeling)
 router.post('/positive', authentification, feeling.createpositive)  /* expect { "user_id":"XXX" ,"feeling": "XXXX"} */
 router.post('/negative', authentification, feeling.createnegative)
 

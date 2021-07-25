@@ -19,16 +19,22 @@ export default {
       return {
         emotion: [],
         reload: false,
-        dataLoad: false
+        dataLoad: false,
+        userFeel: {
+          user_id: Number
+        }
       }
     },
     mounted () {
-
+        this.userFeel.user_id = sessionStorage.getItem('userId')
+        let token = sessionStorage.getItem('token')
         fetch("http://localhost:3000/api/feeling/", {
-            method: "GET",
+            method: "POST",
             headers: {
             "content-type": "application/json",
+            "Authorization" : 'Bearer ' + token
             },
+            body: JSON.stringify(this.userFeel)
         })
         .then(response => {
             if(response.ok) {
@@ -53,7 +59,6 @@ export default {
     },
     methods: {
       disconnect() {
-        console.log('suppr data')
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('pseudo')

@@ -2,7 +2,7 @@
         <aside class="row align-items-center">
 
             <div class="col-6 text-center">
-                <h2 >Sélectionne une émotion :</h2>
+                <h2 >Sélectionne une émotion :</h2> {{kindOfFeel}}
                 <p>{{postEmotion.feeling}}</p>
                 <div class="text-center">
                     <button v-show="postEmotion.feeling" @click="postFeeling">valider</button> 
@@ -17,7 +17,7 @@
                 <b-modal id="modal-1" title="Liste emotion positive">
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling" @click="positiveSelect">
                           <label :for="item" class="radio">{{item}}</label>
                       </b-col>
                   </b-form-row>
@@ -31,7 +31,7 @@
                 <b-modal id="modal-2" title="Liste emotion negative">
                   <form>
                       <fieldset v-for="item in emotionsList.negative" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling">
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling" @click="negativeSelect">
                           <label :for="item">{{item}}</label>
                       </fieldset>
                   </form>
@@ -53,11 +53,11 @@ export default {
                 user_id: Number
             },
             emotionsList : emotions,
+            kindOfFeel: String
             
         }
     },
     mounted() {
-       
  
     },
     
@@ -67,7 +67,7 @@ export default {
                 this.postEmotion.user_id = sessionStorage.getItem('userId')
                 let token = sessionStorage.getItem('token')
 
-                fetch("http://localhost:3000/api/feeling/positive", {
+                fetch(`http://localhost:3000/api/feeling/${this.kindOfFeel}`, {
                     method: "POST",
                         headers: {
                         "content-type": "application/json",
@@ -94,6 +94,12 @@ export default {
                 console.log('select one')
             }
         },
+        positiveSelect() {
+            this.kindOfFeel = 'positive'
+        },
+        negativeSelect() {
+            this.kindOfFeel = 'negative'
+        }
     }
 }
 </script>

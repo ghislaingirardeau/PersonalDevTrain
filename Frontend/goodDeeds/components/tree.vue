@@ -1,5 +1,5 @@
 <script>
-import {EmotionsColor} from '@/store/functions'
+import {emotionsColor} from '@/store/functions'
 
 export default {
     data() {
@@ -10,19 +10,7 @@ export default {
         emotion : Array,
     },
     mounted (){
-        let index = 0 /* envoie l'index a l'objet */
-        const object = document.getElementsByClassName(`Vector`)
-        /* Ajout une class appear a chaque index tant que index est inferieur au nombre d'emotions */
-        
-        do {
-            object[index].classList.add("appear")
-            object[index].style.animationDelay = `${index * 0.2}s`;
-            /* envoie une couleur suivant emotion negative */
-            EmotionsColor(this.emotion[index], object[index])
-            
-            
-            index++
-        } while(index < (this.emotion.length))
+        emotionsColor(this.emotion)
     }
 }
 </script>

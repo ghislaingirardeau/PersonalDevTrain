@@ -2,10 +2,10 @@
         <aside class="row align-items-center">
 
             <div class="col-6 text-center">
-                <h2 >Sélectionne une émotion :</h2> {{kindOfFeel}}
-                <p>{{postEmotion.feeling}}</p>
+                <h2 >Sélectionne une émotion :</h2> 
+                <p>{{feeling}}</p>
                 <div class="text-center">
-                    <button v-show="postEmotion.feeling" @click="postFeeling">valider</button> 
+                    <button v-show="feeling" @click="postFeeling">valider</button> 
                 </div>
             </div>
             
@@ -17,7 +17,7 @@
                 <b-modal id="modal-1" title="Liste emotion positive">
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling" @click="positiveSelect">
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
                           <label :for="item" class="radio">{{item}}</label>
                       </b-col>
                   </b-form-row>
@@ -31,7 +31,7 @@
                 <b-modal id="modal-2" title="Liste emotion negative">
                   <form>
                       <fieldset v-for="item in emotionsList.negative" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="postEmotion.feeling" @click="negativeSelect">
+                          <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
                           <label :for="item">{{item}}</label>
                       </fieldset>
                   </form>
@@ -48,13 +48,9 @@ import emotions from '@/store/emotions'
 export default {
     data() {
         return {
-            postEmotion: {
-                feeling: undefined,
-                user_id: Number
-            },
+            feeling: undefined,
             emotionsList : emotions,
-            kindOfFeel: String
-            
+            kindOfFeel: String /* envoie dans le bon tableau coté mysql */
         }
     },
     mounted() {
@@ -63,17 +59,20 @@ export default {
     
     methods: {
         postFeeling() {
-            if(this.postEmotion.feeling != undefined) {
-                this.postEmotion.user_id = sessionStorage.getItem('userId')
+            if(this.feeling != undefined) {
+                let user_id = sessionStorage.getItem('userId')
                 let token = sessionStorage.getItem('token')
+                /* creer objet a envoyer */
+                let postEmotion = {user_id: user_id, feeling: this.feeling}
 
+                /* route qui varie suivant le type d'emotion pour avoir 2 tableau distinct coté sql */
                 fetch(`http://localhost:3000/api/feeling/${this.kindOfFeel}`, {
                     method: "POST",
                         headers: {
                         "content-type": "application/json",
                         "Authorization" : 'Bearer ' + token
                         },
-                    body: JSON.stringify(this.postEmotion)
+                    body: JSON.stringify(postEmotion)
                 })
                 .then(response => {
                     if(response.ok){
@@ -88,10 +87,11 @@ export default {
                         })
                     }
                 })
-                this.$parent.emotion.push(this.postEmotion.feeling)
+                /* envoie la nouvelle emotion dans le tableau arbre et reload le composant */
+                this.$parent.emotion.push(this.feeling)
                 this.$parent.reload = !this.$parent.reload
             } else {
-                console.log('select one')
+                console.log('selectionner une emotion')
             }
         },
         positiveSelect() {

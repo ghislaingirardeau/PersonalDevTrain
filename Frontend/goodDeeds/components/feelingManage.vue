@@ -4,7 +4,7 @@
             <div class="col-6 text-center">
                 <h2 >Sélectionne une émotion :</h2>
                 <p>{{postEmotion.feeling}}</p>
-                <div class="col-2 align-middle">
+                <div class="text-center">
                     <button v-show="postEmotion.feeling" @click="postFeeling">valider</button> 
                 </div>
             </div>

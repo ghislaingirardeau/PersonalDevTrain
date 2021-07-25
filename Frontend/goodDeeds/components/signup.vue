@@ -2,21 +2,21 @@
 
   <div id="login">
 
-    <h2>Espace de connection</h2>
+    <h2>Renseignez les informations pour valider votre inscription :</h2>
 
     <label for="pseudo" >Mon pseudo</label>
     <input for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
-      
+
+    <label for="email" >Mon email</label>
+    <input for="email" id="email" type="email"  v-model="post.email" required> <!-- copie les données dans le data post  -->
+
     <label for="password" >Mot de passe</label>
     <input for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
       
     <div >
-      <button @click="postLogin">Envoyer</button>
+      <button @click="postSignup">M'inscrire</button>
       <p>{{errorMessage}}</p>
     </div>
-
-
-    <p>Si vous n'avez pas de compte cliquer sur "s'inscrire"</p>
 
   </div>
 
@@ -29,14 +29,15 @@ export default {
     return {
       post: {
         pseudo: null,
+        pseudo: null,
         password: null
       },
       errorMessage: null
     }
   },
   methods: {
-    postLogin() { 
-      fetch("http://localhost:3000/api/login", {
+    postSignup() { 
+      fetch("http://localhost:3000/api/signup", {
       method: 'POST',
       headers: {
         "content-type": "application/json",

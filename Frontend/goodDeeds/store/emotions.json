@@ -1,8 +1,8 @@
 {
-    "positive": ["love", "joy", "suprise", "grateful", "happy", "motivated", "released",
+    "positive": ["love", "joy", "suprise", "grateful", "happy",
         "sentimental", "affectionate", "romantic", "enchanted", "euphoric", "excited", "optimistic", "proud", "cheerful", "content", "peaceful",
         "moved", "amazed", "stunned", "surprise"],
-    "negative": ["fear", "anger", "sadness", "scared", "terrifier", "insecure", "nervous", "horrfied", "enraged", "exasperated", "irrtable",
+    "negative": ["fear", "anger", "sadness", "scared", "terrifier", "insecure", "nervous", "horrfied", "enraged", "exasperated", "irritable",
         "jealous", "disgusted", "hurt", "unhappy", "disappointed", "shameful", "lonely", "gloomy",
         "confused", "overcome"]
 }

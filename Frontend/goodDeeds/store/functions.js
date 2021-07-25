@@ -9,29 +9,58 @@ export function emotionsColor (emotion) {
         /* envoie une couleur suivant emotion negative */
         
         switch (emotion[index]) {
-            case 'fear' : object[index].setAttribute('fill', '#F53E27') /* red */
+            
+            case 'fear' : object[index].setAttribute('fill', '#d12d17') /* red */
             break;
-            case 'jealous': object[index].setAttribute('fill', '#F53E27')
+            case 'scared':
+            case 'terrifier':    
+            case 'insecure':
+            case 'nervous':
+            case 'horrfied': object[index].setAttribute('fill', '#de5745')
             break;
-            case 'anger': object[index].setAttribute('fill', '#EB9D31') /* orange */
+            case 'anger': object[index].setAttribute('fill', '#d18417') /* orange */
             break;
-            case 'anger 2': object[index].setAttribute('fill', '#EB9D31')
+            case 'disgusted':
+            case 'enraged':    
+            case 'irritable':
+            case 'exasperated':
+            case 'jealous': object[index].setAttribute('fill', '#de9e45')
             break;
-            case 'sadness': object[index].setAttribute('fill', '#F7E428') /* yellow */
+            case 'sadness': object[index].setAttribute('fill', '#ebd61a') /* yellow */
             break;
-            case 'sadness 2': object[index].setAttribute('fill', '#F7E428') 
+            case 'hurt':
+            case 'unhappy':    
+            case 'disappointed':
+            case 'shameful':
+            case 'gloomy':
+            case 'lonely': object[index].setAttribute('fill', '#d1c341') 
             break;
-            case 'surprise': object[index].setAttribute('fill', '#282AF7') /* blue */
+            case 'surprise': object[index].setAttribute('fill', '#171ad1') /* blue */
+            break;  
+            case 'confused':
+            case 'overcome':    
+            case 'stunned':
+            case 'amazed':
+            case 'moved': object[index].setAttribute('fill', '#4548de') 
             break;
-            case 'surprise 2': object[index].setAttribute('fill', '#282AF7') 
+            case 'joy': object[index].setAttribute('fill', '#46d117') /* green */
             break;
-            case 'joy': object[index].setAttribute('fill', '#55F522') /* green */
+            case 'euphoric':
+            case 'excited':    
+            case 'optimistic':
+            case 'proud':
+            case 'cheerful':    
+            case 'peaceful':
+            case 'content':
+            case 'happy': object[index].setAttribute('fill', '#6bde45')
             break;
-            case 'happy': object[index].setAttribute('fill', '#55F522')
+            case 'love': object[index].setAttribute('fill', '#17d1c5') /* turquoise hsv 89%, 82% */
             break;
-            case 'love': object[index].setAttribute('fill', '#31EBDF') /* turquoise */
-            break;
-            case 'love 2': object[index].setAttribute('fill', '#31EBDF')
+            case 'sentimental':
+            case 'affectionate':    
+            case 'romantic':
+            case 'enchanted':
+            case 'grateful': object[index].setAttribute('fill', '#45ded4') /* hsv 69%, 87% */
         }
         
         index++

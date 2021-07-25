@@ -2,7 +2,7 @@
 
   <div id="login">
 
-    <h2>Veuillez vous identifier :</h2>
+    <h2>Se connecter :</h2>
 
     <label for="pseudo" >Mon pseudo</label>
     <input for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "login",
+
   data () {
     return {
       post: {

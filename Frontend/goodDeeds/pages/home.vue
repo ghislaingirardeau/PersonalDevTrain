@@ -1,21 +1,32 @@
 <template>
-<main class="container align-items-center" >
+<div class="container align-items-center" >
   <header class="row">
     <h3 class="col-4">Be to feel</h3>
     <h3 class="col-4">Bienvenue {{pseudo}}</h3>
-    <nav class="col-8 ">
+    <nav class="col-4">
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
   
-  <h1>Mon tableau de bord émotionnel</h1>
+  <h1>Mon tableau de bord</h1>
 
-    <feelingManage />
+  <main class="row">
+    
+    <article class="col-6">
+      <h2>Mon arbre d'emotions</h2>
 
-  <h2>Mon arbre d'emotions</h2>
+      <tree v-if="dataLoad" :emotion="emotion" :key="reload"/>
+    </article>
 
-  <tree v-if="dataLoad" :emotion="emotion" :key="reload"/>
-</main>
+    <feelingManage /> <!-- aside -->
+
+  </main>
+    
+
+  
+
+  
+</div>
   
 </template>
 

@@ -1,4 +1,4 @@
-.radio{
+/* .radio{
     position: relative;
 }
 .radio::before{
@@ -8,15 +8,67 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 2px solid green;
+} */
+
+.label {
+    display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.radio--diplay{
-   
+.label input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0px;
+    width: 0px;
 }
-.radio__container{
-    border: 2px solid green;
-}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
 
 .feeling__selected{
     font-size: 1.5rem;
 }
+
+.label:hover input ~ .checkmark {
+    background-color: red;
+  }
+
+.label input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+
+
+ .checkmark:after {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f007";
+  position: absolute;
+  /* display: none; */
+}
+
+.label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.label .checkmark:after {
+  /* top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white; */
+} 

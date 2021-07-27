@@ -2,7 +2,7 @@
         <aside class="col-4 align-items-center">
 
             <div class="col-12 text-center">
-                <h2 class="mb-5">Sélectionne une émotion :</h2> 
+                <h2 class="mb-5">Sélectionne une émotion :</h2> <i class="fas fa-check"></i>
                 
             </div>
             
@@ -15,7 +15,7 @@
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
                           <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
-                          <label :for="item" class="radio">{{item}}</label>
+                          <label :for="item" class="radio p-3">{{item}}</label>
                       </b-col>
                   </b-form-row>
                 </b-modal>
@@ -28,8 +28,11 @@
                 <b-modal id="modal-2" title="Liste émotions négatives">
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
-                          <label :for="item">{{item}}</label>
+                          <label class="label" :for="item">{{item}}
+                            <input class="radio--diplay" type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
+                            <span class="checkmark"></span>
+                          </label>
+                          
                       </b-col>
                   </b-form-row>
                 </b-modal>

@@ -2,7 +2,9 @@
         <aside class="col-4 align-items-center">
 
             <div class="col-12 text-center">
-                <h2 class="mb-5">Sélectionne une émotion :</h2> <i class="fas fa-check"></i>
+                <h2 class="mb-5">Sélectionne une émotion :</h2> 
+
+ 
                 
             </div>
             
@@ -14,8 +16,10 @@
                 <b-modal id="modal-1" title="Liste émotions positives">
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
-                          <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
-                          <label :for="item" class="radio p-3">{{item}}</label>
+                          <label :for="item" class="label__display">{{item}}
+                                <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
+                                <span class="checkmark"><fa icon="check" /></span>
+                          </label>
                       </b-col>
                   </b-form-row>
                 </b-modal>
@@ -28,10 +32,10 @@
                 <b-modal id="modal-2" title="Liste émotions négatives">
                   <b-form-row>
                       <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
-                          <label class="label" :for="item">{{item}}
-                            <input class="radio--diplay" type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
-                            <span class="checkmark"></span>
-                          </label>
+                            <label class="label__display" :for="item">{{item}}
+                                <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
+                                <span class="checkmark"><fa icon="check" /></span>
+                            </label>
                           
                       </b-col>
                   </b-form-row>
@@ -41,7 +45,7 @@
             
             <div class="text-center">
                 <p class="feeling__selected">{{feeling}}</p>
-                <button class="btn btn-primary" v-show="feeling" @click="postFeeling">valider</button> 
+                <button class="btn btn-primary" v-show="feeling" @click="postFeeling">Valider</button> 
             </div>
 
         </aside>

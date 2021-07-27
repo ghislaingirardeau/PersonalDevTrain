@@ -84,24 +84,5 @@ export default {
 </script>
 
 <style>
-path[class*='Vector'] {
-  opacity: 0;
-}
 
-path[class*='appear'] {
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: feuille 4s forwards;
-
-}
-
-@keyframes feuille {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-  
-}
 </style>

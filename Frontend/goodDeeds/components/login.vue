@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
 
   data () {
@@ -36,31 +38,20 @@ export default {
   },
   methods: {
     postLogin() { 
-      fetch("http://localhost:3000/api/login", {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json",
+      const data = JSON.stringify(this.post)
+      axios.post("http://localhost:3000/api/login", data, {
+        headers: {
+          "content-type": "application/json",
         },
-      body: JSON.stringify(this.post)
-      })
-      .then (res => {
-        if(res.ok) { /* si reponse est ok, je recupere le data */
-          res.json()
-          .then (data => {
-            /* envoie le token et le id dans la session storage pour recup sur la page home */  
-            sessionStorage.setItem('token', data.token)
-            sessionStorage.setItem('userId', data.userId)
-            sessionStorage.setItem('pseudo', data.pseudo)
-            sessionStorage.setItem('role', data.role)
-            window.open('/home', '_self')
+      }) 
+      .then(response => {
+        
+        sessionStorage.setItem('token', response.data.token)
+        sessionStorage.setItem('userId', response.data.userId)
+        sessionStorage.setItem('pseudo', response.data.pseudo)
+        sessionStorage.setItem('role', response.data.role)
+        window.open('/home', '_self')
 
-          })
-        } else { /* sinon j'envoie une erreur */
-          res.json()
-          .then(data => {
-            this.errorMessage = "erreur du serveur" /* renvoie error du backend sur le frontend */
-          })
-        }
       })
       .catch(() => console.log({message: "erreur de connexion"}))
     },

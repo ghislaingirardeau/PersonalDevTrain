@@ -7,10 +7,10 @@
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
-  
-  <h1>Mon tableau de bord</h1>
 
   <main class="row">
+
+    <h1>Mon tableau de bord</h1>
     
     <article class="col-6">
       <h2>Mon arbre d'emotions</h2>
@@ -21,10 +21,6 @@
     <feelingManage /> <!-- aside -->
 
   </main>
-    
-
-  
-
   
 </div>
   
@@ -43,10 +39,10 @@ export default {
     },
     mounted () {
       this.pseudo = sessionStorage.getItem('pseudo')
-
       let user_id = sessionStorage.getItem('userId')
       let token = sessionStorage.getItem('token')
       const userFeel = {user_id: user_id}
+
       fetch("http://localhost:3000/api/feeling/", {
           method: "POST",
           headers: {
@@ -60,7 +56,6 @@ export default {
               response.json()
               .then(data => {
                 /* Recupere toutes les emotions dans un tableau */
-                console.log(data)
                   data.negative.forEach(element => {
                       this.emotion.push(element.feeling_neg)
                   });

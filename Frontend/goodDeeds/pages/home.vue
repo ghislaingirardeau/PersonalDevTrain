@@ -10,12 +10,12 @@
 
   <main class="row">
 
-    <h1>Mon tableau de bord</h1>
+    <h1 class="col-12">Mon tableau de bord</h1>
     
-    <article class="col-6">
-      <h2>Mon arbre d'emotions</h2>
+    <article class="col-8">
+      <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>
 
-      <tree v-if="dataLoad" :emotion="emotion" :key="reload"/>
+      <tree  v-if="dataLoad" :emotion="emotion" :key="reload"/>
     </article>
 
     <feelingManage /> <!-- aside -->

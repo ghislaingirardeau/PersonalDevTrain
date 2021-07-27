@@ -1,8 +1,8 @@
 <template>
-        <aside class="col-6 align-items-center">
+        <aside class="col-4 align-items-center">
 
             <div class="col-12 text-center">
-                <h2 >Sélectionne une émotion :</h2> 
+                <h2 class="mb-5">Sélectionne une émotion :</h2> 
                 
             </div>
             
@@ -37,7 +37,7 @@
 
             
             <div class="text-center">
-                <p>{{feeling}}</p>
+                <p class="feeling__selected">{{feeling}}</p>
                 <button class="btn btn-primary" v-show="feeling" @click="postFeeling">valider</button> 
             </div>
 
@@ -128,5 +128,9 @@ input:checked{
 }
 .radio__container{
     border: 2px solid green;
+}
+
+.feeling__selected{
+    font-size: 1.5rem;
 }
 </style>

@@ -2,6 +2,11 @@
   border-bottom: 2px blue solid;
 }
 
+article {
+  & > h2 {
+    font-size: $titleSizeh1;
+  }
+}
 
 path[class*='Vector'] {
     opacity: 0;

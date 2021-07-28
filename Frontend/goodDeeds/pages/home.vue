@@ -1,6 +1,6 @@
 <template>
 <div class="container align-items-center" >
-  <header class="row mt-5 mb-3 pb-3 header__display">
+  <header class="row mt-3 mb-3 pb-2 header__display">
     <h3 class="col-4">Be to feel</h3>
     <h3 class="col-4 text-center">Bienvenue {{pseudo}}</h3>
     <nav class="col-4 text-right">
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { upperFirstLetter } from '@/store/functions'
 
 export default {
     data () {
@@ -37,7 +38,7 @@ export default {
       }
     },
     mounted () {
-      this.pseudo = sessionStorage.getItem('pseudo')
+      this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
       let user_id = sessionStorage.getItem('userId')
       let token = sessionStorage.getItem('token')
       const userFeel = {user_id: user_id}

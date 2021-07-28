@@ -66,3 +66,7 @@ export function emotionsColor (emotion) {
         index++
     } while(index < (emotion.length))
 }
+
+export function upperFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1) 
+}

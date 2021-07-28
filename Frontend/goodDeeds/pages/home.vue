@@ -1,16 +1,15 @@
 <template>
 <div class="container align-items-center" >
-  <header class="row">
+  <header class="row mt-5 mb-3 pb-3 header__display">
     <h3 class="col-4">Be to feel</h3>
-    <h3 class="col-4">Bienvenue {{pseudo}}</h3>
-    <nav class="col-4">
+    <h3 class="col-4 text-center">Bienvenue {{pseudo}}</h3>
+    <nav class="col-4 text-right">
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
 
   <main class="row">
 
-    <h1 class="col-12">Mon tableau de bord</h1>
     
     <article class="col-8">
       <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>

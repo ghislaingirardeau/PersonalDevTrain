@@ -37,3 +37,10 @@
 .feeling__selected{
     font-size: 1.5rem;
 }
+
+.legend{
+    & > p {
+        font-size: 1.2rem;
+        margin-left: 20px;
+    }
+}

@@ -1,8 +1,46 @@
 {
     "positive": ["love", "joy", "suprise", "grateful", "happy",
         "sentimental", "affectionate", "romantic", "enchanted", "euphoric", "excited", "optimistic", "proud", "cheerful", "content", "peaceful",
-        "moved", "amazed", "stunned", "surprise"],
+        "moved", "amazed", "stunned"],
     "negative": ["fear", "anger", "sadness", "scared", "terrifier", "insecure", "nervous", "horrfied", "enraged", "exasperated", "irritable",
         "jealous", "disgusted", "hurt", "unhappy", "disappointed", "shameful", "lonely", "gloomy",
-        "confused", "overcome"]
+        "confused", "overcome"],
+    "main": [
+            {
+                "feel":"joy",
+                "colorPrimary": "#46d117",
+                "colorSecondary": "#6bde45",
+                "colorThird": "#6bde45" 
+            },
+            {
+                "feel":"love",
+                "colorPrimary": "#17d1c5",
+                "colorSecondary": "#45ded4",
+                "colorThird": "#45ded4" 
+            },
+            {
+                "feel":"suprise",
+                "colorPrimary": "#171ad1",
+                "colorSecondary": "#4548de",
+                "colorThird": "#4548de" 
+            },
+            {
+                "feel":"fear",
+                "colorPrimary": "#d12d17",
+                "colorSecondary": "#de5745",
+                "colorThird": "#de5745" 
+            },
+            {
+                "feel":"anger",
+                "colorPrimary": "#d18417",
+                "colorSecondary": "#de9e45",
+                "colorThird": "#de9e45" 
+            },
+            {
+                "feel":"sadness",
+                "colorPrimary": "#ebd61a",
+                "colorSecondary": "#d1c341",
+                "colorThird": "#d1c341" 
+            }
+            ]
 }

@@ -21,6 +21,7 @@ export function emotionsColor (emotion) {
             case 'nervous':
             case 'horrfied': object[index].setAttribute('fill', '#de5745')
             break;
+            
             case 'anger': object[index].setAttribute('fill', '#d17c04') /* orange */
             break;
             case 'disgusted':
@@ -29,6 +30,7 @@ export function emotionsColor (emotion) {
             case 'exasperated':
             case 'jealous': object[index].setAttribute('fill', '#de9e45')
             break;
+
             case 'sadness': object[index].setAttribute('fill', '#d1bd04') /* yellow */
             break;
             case 'hurt':
@@ -38,6 +40,20 @@ export function emotionsColor (emotion) {
             case 'gloomy':
             case 'lonely': object[index].setAttribute('fill', '#d1c341') 
             break;
+            case 'depressed':
+            case 'hopeless':    
+            case 'neglected':
+            case 'isolated':
+            case 'guilty':
+            case 'regretful':
+            case 'displeased':    
+            case 'dismayed':
+            case 'disheartened':
+            case 'miserable':
+            case 'disturbed':
+            case 'agonized': object[index].setAttribute('fill', '#ebe08f')
+            break;
+            
             case 'surprise': object[index].setAttribute('fill', '#0408d1') /* blue */
             break;  
             case 'confused':
@@ -46,6 +62,18 @@ export function emotionsColor (emotion) {
             case 'amazed':
             case 'moved': object[index].setAttribute('fill', '#4548de') 
             break;
+            case 'touched':
+            case 'stimulated':    
+            case 'astounded':
+            case 'speechless':
+            case 'awe-struck':
+            case 'astonished':
+            case 'perplexed':    
+            case 'disillusioned':
+            case 'bewildered':
+            case 'shocked': object[index].setAttribute('fill', '#8f91eb')
+            break;
+            
             case 'joy': object[index].setAttribute('fill', '#37d104') /* green */
             break;
             case 'euphoric':
@@ -57,13 +85,43 @@ export function emotionsColor (emotion) {
             case 'content':
             case 'happy': object[index].setAttribute('fill', '#6bde45')
             break;
+            case 'jubilant':
+            case 'elated':    
+            case 'zealous':
+            case 'enthusiastic':
+            case 'hopeful':
+            case 'eager':
+            case 'illustrious':
+            case 'triumphant':    
+            case 'playful':
+            case 'amused':
+            case 'delighted':
+            case 'jovial':
+            case 'pleased':    
+            case 'satisfied':
+            case 'serene':
+            case 'tranquil': object[index].setAttribute('fill', '#a6eb8f')
+            break;
+
             case 'love': object[index].setAttribute('fill', '#04d1c3') /* turquoise */
             break;
             case 'sentimental':
             case 'affectionate':    
             case 'romantic':
             case 'enchanted':
-            case 'grateful': object[index].setAttribute('fill', '#45ded4') 
+            case 'grateful': object[index].setAttribute('fill', '#45ded4')
+            break;
+            case 'thankful':
+            case 'appreciative':    
+            case 'nostalgic':
+            case 'tender':
+            case 'compassionate':
+            case 'warmhearted':
+            case 'enamored':    
+            case 'passionate':
+            case 'rapturous':
+            case 'enthralled': object[index].setAttribute('fill', '#8febe5')
+            break;
         }
         
         index++

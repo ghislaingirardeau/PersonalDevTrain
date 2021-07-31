@@ -4,35 +4,10 @@
     }
 }
 
-.load {
-    opacity: 0;
-}
-
-[class*="appear"]{
-    opacity: 1;
-    transition: all 1s ease;
-}
-
-.appear-0{
-    transition-delay: .2s;
-}
-
-.appear-1{
-    transition-delay: .4s;
-}
-.appear-2{
-    transition-delay: .8s;
-}
-
-
-.aside__selection{
+.aside__selection, .aside__legend{
     border: 2px solid blue;
+    border-radius: 5px 5px;
 }
-
-.aside__legend{
-    border: 2px solid blue;
-}
-
 
 .label__display {
     display: block;

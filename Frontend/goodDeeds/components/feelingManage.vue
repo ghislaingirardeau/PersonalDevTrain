@@ -1,10 +1,10 @@
 <template>
-        <aside class="col-4 row text-center aside__bloc">
+        <aside class="col-4 text-center aside__bloc">
 
-            <div id="aside__selection" class="row aside__selection mb-4 p-2 load">
-                <h2 class="col-12 mb-n3 aside__bloc--title">Sélectionne une émotion</h2>              
+            <div id="aside__selection" class="row aside__selection mb-5 p-2 load">
+                <h2 class="col-12 aside__bloc--title mb-4">Sélectionne une émotion</h2>              
 
-                <div class="col-6 mt-n4 mb-n5">
+                <div class="col-6">
 
                     <b-button v-b-modal.modal-1 class="mb-3">Positive</b-button>
 
@@ -20,7 +20,7 @@
                     </b-modal>
                 </div>
 
-                <div class="col-6 text-center mt-n4 mb-n5">
+                <div class="col-6">
 
                     <b-button v-b-modal.modal-2 class="mb-3">Negative</b-button>
 
@@ -36,16 +36,16 @@
                     </b-modal>
                 </div>
             
-                <div class="col-12 text-center mt-n4 mb-n5">
+                <div class="col-12 text-center">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
                     <button class="btn btn-primary" v-if="feeling" @click="postFeeling">Valider</button> 
                 </div>
             </div>
             
             <div id="aside__legend" class="row aside__legend p-2 load">
-                <h2 class="aside__bloc--title col-12">Catégories d'émotions</h2>
+                <h2 class="aside__bloc--title col-12 mb-5">Catégories d'émotions</h2>
 
-                <div class="d-flex flex-wrap justify-content-around mt-n5 col-6 legend" v-for="item in emotionsList.main" :key="item.feel">
+                <div class="d-flex flex-wrap justify-content-around col-6 mb-3 legend" v-for="item in emotionsList.main" :key="item.feel">
                     <div>
                         <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -64,7 +64,7 @@
                     </svg>
                     </div>
 
-                    <p class="col-12 text-center">{{item.feel}}</p>
+                    <p class="col-12 mt-n3">{{item.feel}}</p>
                 </div>
             </div>
 

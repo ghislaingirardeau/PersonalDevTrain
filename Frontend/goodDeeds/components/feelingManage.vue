@@ -43,7 +43,7 @@
             </div>
             
             <div id="aside__legend" class="row aside__legend p-2 load">
-                <h2 class="aside__bloc--title">Légende, catégorie des émotions</h2>
+                <h2 class="aside__bloc--title col-12">Catégories d'émotions</h2>
 
                 <div class="d-flex flex-wrap justify-content-around mt-n5 col-6 legend" v-for="item in emotionsList.main" :key="item.feel">
                     <div>

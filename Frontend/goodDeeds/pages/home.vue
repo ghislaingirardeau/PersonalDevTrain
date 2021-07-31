@@ -11,10 +11,10 @@
   <main class="row">
 
     
-    <article class="col-8">
+    <article id="tree__bloc" class="col-8 load">
       <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>
 
-      <tree  v-if="dataLoad" :emotion="emotion" :key="reload"/>
+      <tree :emotion="emotion" :key="reload"/>
     </article>
 
     <feelingManage /> <!-- aside -->
@@ -63,6 +63,8 @@ export default {
                       this.emotion.push(element.feeling_pos)
                   });
                   this.dataLoad = true
+                  const eltTree = document.getElementById("tree__bloc")
+                  eltTree.classList.add("appear-0")
               })
           } else { /* sinon j'envoie une erreur */
             response.json()
@@ -83,6 +85,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>

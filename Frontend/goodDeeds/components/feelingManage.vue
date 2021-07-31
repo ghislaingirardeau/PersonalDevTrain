@@ -1,7 +1,7 @@
 <template>
         <aside class="col-4 row text-center aside__bloc">
 
-            <div class="row aside__selection mb-4 p-2">
+            <div id="aside__selection" class="row aside__selection mb-4 p-2 load">
                 <h2 class="col-12 mb-n3 aside__bloc--title">Sélectionne une émotion</h2>              
 
                 <div class="col-6 mt-n4 mb-n5">
@@ -35,7 +35,6 @@
                       </b-form-row>
                     </b-modal>
                 </div>
-
             
                 <div class="col-12 text-center mt-n4 mb-n5">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
@@ -43,7 +42,7 @@
                 </div>
             </div>
             
-            <div class="row aside__legend p-2">
+            <div id="aside__legend" class="row aside__legend p-2 load">
                 <h2 class="aside__bloc--title">Légende, catégorie des émotions</h2>
 
                 <div class="d-flex flex-wrap justify-content-around mt-n5 col-6 legend" v-for="item in emotionsList.main" :key="item.feel">
@@ -84,10 +83,17 @@ export default {
             kindOfFeel: String, /* envoie dans le bon tableau coté mysql */
         }
     },
+
     mounted() {
-        
+        if(this.$parent.dataLoad === true) {
+            setTimeout(function() {
+                const eltSelection = document.getElementById('aside__selection')
+                eltSelection.classList.add('appear-1')
+                const eltLegend = document.getElementById('aside__legend')
+                eltLegend.classList.add('appear-2')
+            }, 1000)
+        }
     },
-    
     methods: {
         postFeeling() {
             if(this.feeling != undefined) {

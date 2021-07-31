@@ -2,3 +2,14 @@
     color: red;
     font-style: italic;
 }
+
+.button--layout{
+    border: 2px solid rgb(1, 138, 138);
+    border-radius: 5px 5px;
+    background-color: rgb(1, 138, 138);
+    color: white;
+    transition: all .4s ease;
+    &:hover{
+        color: rgb(30, 35, 36);
+    }
+}

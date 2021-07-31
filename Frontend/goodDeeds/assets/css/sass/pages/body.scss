@@ -1,6 +1,12 @@
 h1, h2, h3 {
     font-family: $familymain;
-  }
-  button, h5, a{
+}
+
+p, label {
+  font-family: $familymain;
+  font-size: $fontparagraphe;
+}
+
+button, h5, a{
     font-family: $familylink;
-  }
+}

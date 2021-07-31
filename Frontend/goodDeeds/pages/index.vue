@@ -7,23 +7,28 @@
 
   <nav class="row">
     <div class="button__log col-12">
-      <button class="m-3 p-2" @click="showLogin">Se connecter</button>
+      <button class="m-3 p-2 button--layout" @click="showLogin">Se connecter</button>
     
-      <button class="m-3 p-2" @click="showSignup">S'inscrire</button>
+      <button class="m-3 p-2 button--layout" @click="showSignup">S'inscrire</button>
     </div>
     
     <login v-if="login" :key="login"/>
     <signup v-if="signup" :key="signup"/>
-  </nav>    
+  </nav>
 
-  <h2>Présentation du concept</h2>
+  <article class="p-4">
 
-  <p>Parce qu'il n'est jamais facile d'exprimer ces émotions... <br>
-  Parce que nous n'avons pas la possibilité de visualiser notre évolution...<br>
-  Ce projet a pour objectif très simple de proposer un outil permettant de visualiser et d'avoir une représentation 
-  graphique de vos émotions à travers le temps.
+    <h2 class="mb-4">Présentation du concept</h2>
 
-  </p>
+    <p>Parce qu'il n'est jamais facile d'exprimer ces émotions... <br>
+    Parce que nous n'avons pas la possibilité de visualiser notre évolution...<br>
+    Ce projet a pour objectif très simple de proposer un outil permettant de visualiser et d'avoir une représentation 
+    graphique de vos émotions à travers le temps.
+    </p>
+  
+  </article>    
+
+  
 
 </main>
   
@@ -35,7 +40,7 @@
 export default {
   data () {
     return {
-      login: false,
+      login: true,
       signup: false
       
     }

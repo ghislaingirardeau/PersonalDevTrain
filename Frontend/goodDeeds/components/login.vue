@@ -2,7 +2,7 @@
 
   <div class="col-12">
 
-    <h2 class="m-3">Espace de connection</h2>
+    <h2 class="m-3">Espace de connexion</h2>
 
     <form class="col-12 border">
       <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
@@ -11,9 +11,9 @@
       <label class="col-4 m-3" for="password" >Mot de passe</label>
       <input class="col-4 m-3" for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
     </form>  
-    
+
     <div >
-      <button class="m-4" @click="postLogin">Envoyer</button>
+      <button class="m-3 p-2 button--layout" @click="postLogin">Envoyer</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
 

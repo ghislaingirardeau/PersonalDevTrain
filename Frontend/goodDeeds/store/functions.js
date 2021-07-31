@@ -71,6 +71,8 @@ export function upperFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1) 
 }
 
+import axios from "axios"
+
 export function postConnection (connectionType, post, errorMessage) {
     const data = JSON.stringify(post)
       axios.post("http://localhost:3000/api/" + connectionType, data, {

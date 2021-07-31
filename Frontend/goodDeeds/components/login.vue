@@ -13,7 +13,7 @@
     </form>  
 
     <div >
-      <button class="m-3 p-2 button--layout" @click="postLogin">Envoyer</button>
+      <button class="m-3 p-2 button--layout" @click="postConnection('login', post, errorMessage)">Envoyer</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
 
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from "axios"
+import {postConnection} from '@/store/functions'
 
 export default {
 
@@ -39,24 +39,7 @@ export default {
     }
   },
   methods: {
-    postLogin() { 
-      const data = JSON.stringify(this.post)
-      axios.post("http://localhost:3000/api/login", data, {
-        headers: {
-          "content-type": "application/json",
-        },
-      }) 
-      .then(response => {
-        
-        sessionStorage.setItem('token', response.data.token)
-        sessionStorage.setItem('userId', response.data.userId)
-        sessionStorage.setItem('pseudo', response.data.pseudo)
-        sessionStorage.setItem('role', response.data.role)
-        window.open('/home', '_self')
-
-      })
-      .catch((error) => this.errorMessage = error.response.data.message)
-    },
+    postConnection
   },
 }
 </script>

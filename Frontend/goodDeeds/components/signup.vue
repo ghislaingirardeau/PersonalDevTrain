@@ -1,21 +1,23 @@
 <template>
 
-  <div id="login">
+  <div class="col-12">
 
-    <h2>Renseignez les informations pour valider votre inscription :</h2>
+    <h2 class="m-3">Renseignez les informations pour valider votre inscription :</h2>
 
-    <label for="pseudo" >Mon pseudo</label>
-    <input for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
+    <form class="col-12 border">
+      <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
+      <input class="col-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
 
-    <label for="email" >Mon email</label>
-    <input for="email" id="email" type="email"  v-model="post.email" required> <!-- copie les données dans le data post  -->
+      <label class="col-4 m-3" for="email" >Mon email</label>
+      <input class="col-4 m-3" for="email" id="email" type="email"  v-model="post.email" required> <!-- copie les données dans le data post  -->
 
-    <label for="password" >Mot de passe</label>
-    <input for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
-      
+      <label class="col-4 m-3" for="password" >Mot de passe</label>
+      <input class="col-4 m-3" for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
+    </form>
+
     <div >
-      <button @click="postSignup">M'inscrire</button>
-      <p>{{errorMessage}}</p>
+      <button class="m-4" @click="postSignup">M'inscrire</button>
+      <p class="message--error">{{errorMessage}}</p>
     </div>
 
   </div>

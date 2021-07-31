@@ -1,22 +1,29 @@
 <template>
-<main>
-  <header>
-    <nav>
-      <button @click="showLogin">Se connecter</button>
-      <button @click="showSignup">S'inscrire</button>
-    </nav>
+<main class="container text-center border">
+  <header class="border mt-4 mb-4">
+    <h1>Bienvenue sur Be to Feel </h1>
     
   </header>
 
-  <h1>Bienvenue sur Be to Feel </h1>
-
+  <nav class="row">
+    <div class="button__log col-12">
+      <button class="m-3 p-2" @click="showLogin">Se connecter</button>
+    
+      <button class="m-3 p-2" @click="showSignup">S'inscrire</button>
+    </div>
+    
     <login v-if="login" :key="login"/>
     <signup v-if="signup" :key="signup"/>
+  </nav>    
 
   <h2>Présentation du concept</h2>
 
-  <p>Visualiser comment evolue vos emtions dans le temps</p>
-  
+  <p>Parce qu'il n'est jamais facile d'exprimer ces émotions... <br>
+  Parce que nous n'avons pas la possibilité de visualiser notre évolution...<br>
+  Ce projet a pour objectif très simple de proposer un outil permettant de visualiser et d'avoir une représentation 
+  graphique de vos émotions à travers le temps.
+
+  </p>
 
 </main>
   

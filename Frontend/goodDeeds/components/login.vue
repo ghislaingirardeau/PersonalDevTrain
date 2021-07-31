@@ -1,18 +1,20 @@
 <template>
 
-  <div id="login">
+  <div class="col-12">
 
-    <h2>Espace de connection</h2>
+    <h2 class="m-3">Espace de connection</h2>
 
-    <label for="pseudo" >Mon pseudo</label>
-    <input for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
-      
-    <label for="password" >Mot de passe</label>
-    <input for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
-      
+    <form class="col-12 border">
+      <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
+      <input class="col-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
+
+      <label class="col-4 m-3" for="password" >Mot de passe</label>
+      <input class="col-4 m-3" for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
+    </form>  
+    
     <div >
-      <button @click="postLogin">Envoyer</button>
-      <p>{{errorMessage}}</p>
+      <button class="m-4" @click="postLogin">Envoyer</button>
+      <p class="message--error">{{errorMessage}}</p>
     </div>
 
 
@@ -53,7 +55,7 @@ export default {
         window.open('/home', '_self')
 
       })
-      .catch(() => console.log({message: "erreur de connexion"}))
+      .catch((error) => this.errorMessage = error.response.data.message)
     },
   },
 }

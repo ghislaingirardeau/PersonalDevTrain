@@ -6,7 +6,7 @@
 
                 <div class="col-6">
 
-                    <b-button v-b-modal.modal-1 class="mb-3">Positive</b-button>
+                    <b-button v-b-modal.modal-1 class="mb-3 button__feel button__feel--colorlight">Positive</b-button>
 
                     <b-modal id="modal-1" title="Liste émotions positives">
                       <b-form-row>
@@ -22,7 +22,7 @@
 
                 <div class="col-6">
 
-                    <b-button v-b-modal.modal-2 class="mb-3">Negative</b-button>
+                    <b-button v-b-modal.modal-2 class="mb-3 button__feel button__feel--colordark">Negative</b-button>
 
                     <b-modal id="modal-2" title="Liste émotions négatives">
                       <b-form-row>

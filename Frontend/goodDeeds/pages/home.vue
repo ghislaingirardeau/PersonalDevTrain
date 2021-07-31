@@ -1,9 +1,9 @@
 <template>
 <div class="container align-items-center" >
-  <header class="row mt-3 mb-3 pb-2 header__display">
+  <header class="row d-flex justify-content-around align-items-center mt-3 mb-3 pb-2 header__display">
     <h3 class="col-4">Be to feel</h3>
     <h3 class="col-4 text-center">Bienvenue {{pseudo}}</h3>
-    <nav class="col-4 text-right">
+    <nav class="col-3 text-right">
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>

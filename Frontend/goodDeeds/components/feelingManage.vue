@@ -36,7 +36,7 @@
             </div>
 
             
-            <div class="col-12 text-center mt-n5 mb-n5">
+            <div class="col-12 text-center mt-n4 mb-n5">
                 <p class="mb-4 feeling__selected">{{feeling}}</p>
                 <button class="btn btn-primary" v-if="feeling" @click="postFeeling">Valider</button> 
             </div>

@@ -4,6 +4,15 @@
     }
 }
 
+.aside__selection{
+    border: 2px solid blue;
+}
+
+.aside__legend{
+    border: 2px solid blue;
+}
+
+
 .label__display {
     display: block;
     position: relative;
@@ -50,7 +59,7 @@
 }
 
 .legend{
-    
+    height: 80px;
     & > p {
         font-size: $fontlegend;
         font-family: $familyfeel;

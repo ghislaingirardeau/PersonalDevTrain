@@ -1,68 +1,72 @@
 <template>
-        <aside class="col-4 row aside__bloc">
+        <aside class="col-4 row text-center aside__bloc">
 
-            <h2 class="col-12 text-center mb-n3 aside__bloc--title">Sélectionne une émotion :</h2>              
+            <div class="row aside__selection mb-4 p-2">
+                <h2 class="col-12 mb-n3 aside__bloc--title">Sélectionne une émotion</h2>              
 
-            <div class="col-6 text-center mt-n4 mb-n5">
+                <div class="col-6 mt-n4 mb-n5">
 
-                <b-button v-b-modal.modal-1 class="mb-3">Positive</b-button>
+                    <b-button v-b-modal.modal-1 class="mb-3">Positive</b-button>
 
-                <b-modal id="modal-1" title="Liste émotions positives">
-                  <b-form-row>
-                      <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
-                          <label :for="item" class="label__display">{{item}}
-                                <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
-                                <span class="checkmark"><fa icon="check" /></span>
-                          </label>
-                      </b-col>
-                  </b-form-row>
-                </b-modal>
-            </div>
+                    <b-modal id="modal-1" title="Liste émotions positives">
+                      <b-form-row>
+                          <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
+                              <label :for="item" class="label__display">{{item}}
+                                    <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
+                                    <span class="checkmark"><fa icon="check" /></span>
+                              </label>
+                          </b-col>
+                      </b-form-row>
+                    </b-modal>
+                </div>
 
-            <div class="col-6 text-center mt-n4 mb-n5">
-                
-                <b-button v-b-modal.modal-2 class="mb-3">Negative</b-button>
-        
-                <b-modal id="modal-2" title="Liste émotions négatives">
-                  <b-form-row>
-                      <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
-                            <label class="label__display" :for="item">{{item}}
-                                <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
-                                <span class="checkmark"><fa icon="check" /></span>
-                            </label>
-                      </b-col>
-                  </b-form-row>
-                </b-modal>
-            </div>
+                <div class="col-6 text-center mt-n4 mb-n5">
+
+                    <b-button v-b-modal.modal-2 class="mb-3">Negative</b-button>
+
+                    <b-modal id="modal-2" title="Liste émotions négatives">
+                      <b-form-row>
+                          <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
+                                <label class="label__display" :for="item">{{item}}
+                                    <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
+                                    <span class="checkmark"><fa icon="check" /></span>
+                                </label>
+                          </b-col>
+                      </b-form-row>
+                    </b-modal>
+                </div>
 
             
-            <div class="col-12 text-center mt-n4 mb-n5">
-                <p class="mb-4 feeling__selected">{{feeling}}</p>
-                <button class="btn btn-primary" v-if="feeling" @click="postFeeling">Valider</button> 
-            </div>
-
-            <h2 class="mb-n4 aside__bloc--title">Légende, catégorie des émotions</h2>
-
-            <div class="d-flex flex-wrap justify-content-around align-items-center col-6 legend" v-for="item in emotionsList.main" :key="item.feel">
-                <div>
-                    <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorPrimary"/>
-                    </g>
-                </svg>
-                <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorSecondary"/>
-                    </g>
-                </svg>
-                <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorThird"/>
-                    </g>
-                </svg>
+                <div class="col-12 text-center mt-n4 mb-n5">
+                    <p class="mb-4 feeling__selected">{{feeling}}</p>
+                    <button class="btn btn-primary" v-if="feeling" @click="postFeeling">Valider</button> 
                 </div>
-                
-                <p class="col-12 text-center">{{item.feel}}</p>
+            </div>
+            
+            <div class="row aside__legend p-2">
+                <h2 class="aside__bloc--title">Légende, catégorie des émotions</h2>
+
+                <div class="d-flex flex-wrap justify-content-around mt-n5 col-6 legend" v-for="item in emotionsList.main" :key="item.feel">
+                    <div>
+                        <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorPrimary"/>
+                        </g>
+                    </svg>
+                    <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorSecondary"/>
+                        </g>
+                    </svg>
+                    <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path  d="M611 2.00002C608.9 5.90002 608.6 14.4 610.4 19.7C613 27.7 621.7 35 629.9 36.2C631.9 36.4 632.5 35.9 633.6 33C638.5 19.5 629.5 3.50002 615.3 0.500021C612.7 2.08223e-05 611.9 0.300021 611 2.00002Z" :fill="item.colorThird"/>
+                        </g>
+                    </svg>
+                    </div>
+
+                    <p class="col-12 text-center">{{item.feel}}</p>
+                </div>
             </div>
 
         </aside>
@@ -71,7 +75,6 @@
 
 <script>
 import emotions from '@/store/emotions'
-
 
 export default {
     data() {

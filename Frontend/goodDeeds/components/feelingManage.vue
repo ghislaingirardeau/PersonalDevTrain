@@ -64,7 +64,7 @@
                     </svg>
                     </div>
 
-                    <p class="col-12 mt-n3">{{item.feel}}</p>
+                    <p class="col-12 mt-n3">{{upperFirstLetter(item.feel)}}</p>
                 </div>
             </div>
 

@@ -5,18 +5,20 @@
     
   </header>
 
-  <nav class="col-8 border">
+  <nav class="col-8 border rounded">
     <div class="button__log col-12">
       <button class="m-3 p-2 button--layout" @click="showLogin">Se connecter</button>
     
       <button class="m-3 p-2 button--layout" @click="showSignup">S'inscrire</button>
     </div>
-    
-    <login v-if="login" :key="login"/>
-    <signup v-if="signup" :key="signup"/>
+
+    <transition name="fade_log" mode="out-in">
+      <login v-if="login" :key="login"/>
+      <signup v-if="signup" :key="signup"/>
+    </transition>
   </nav>
 
-  <div class="col-8 mt-5 border">
+  <div class="col-8 mt-2 mb-2 p-2 border rounded">
 
     <h2 class="mb-4">Présentation du concept</h2>
 

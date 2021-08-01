@@ -19,3 +19,12 @@
     border-radius: 5px 5px;
     box-shadow: 3px 3px 5px gray;
 }
+
+/* ANIMATION log */
+
+.fade_log-enter-active, .fade_log-leave-active {
+    transition: opacity .5s;
+  }
+  .fade_log-enter, .fade_log-leave-to {
+    opacity: 0;
+  }

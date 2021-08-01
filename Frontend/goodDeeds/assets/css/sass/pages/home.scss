@@ -12,14 +12,16 @@ article {
   padding: 0 15% 0 15%;
 }
 
+/* ANIMATION LEAVES */
+
 path[class*='Vector'] {
     opacity: 0;
 }
   
-  path[class*='appear'] {
-    transform-origin: center;
-    transform-box: fill-box;
-    animation: feuille 4s forwards;
+path[class*='appear'] {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: feuille 4s forwards;
 }
   
 @keyframes feuille {
@@ -29,4 +31,14 @@ path[class*='Vector'] {
     to {
       opacity: 1;
     }
+}
+
+
+/* ANIMATION TREE APPEARED */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

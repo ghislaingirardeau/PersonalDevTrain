@@ -10,12 +10,14 @@
 
   <main class="row">
 
-    
-    <article v-show="dataLoad" id="tree__bloc" class="col-8 load">
-      <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>
+    <transition name="fade" appear>
+      <article v-show="dataLoad" id="tree__bloc" class="col-8">
 
-      <tree :emotion="emotion" :key="reload"/>
-    </article>
+        <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>
+        <tree :emotion="emotion" :key="reload"/>
+
+      </article>
+    </transition>
 
     <feelingManage /> <!-- aside -->
 
@@ -63,9 +65,7 @@ export default {
                       this.emotion.push(element.feeling_pos)
                   });
                   
-                  const eltTree = document.getElementById("tree__bloc")
-                  eltTree.classList.add("appear-0")
-                  this.dataLoad = true
+                 this.dataLoad = true
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

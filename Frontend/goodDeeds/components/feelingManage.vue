@@ -88,9 +88,9 @@ export default {
         if(this.$parent.dataLoad === true) {
             setTimeout(function() {
                 const eltSelection = document.getElementById('aside__selection')
-                eltSelection.classList.add('appear-1')
+                eltSelection.classList.add('reveal-1')
                 const eltLegend = document.getElementById('aside__legend')
-                eltLegend.classList.add('appear-2')
+                eltLegend.classList.add('reveal-2')
             }, 1000)
         }
     },

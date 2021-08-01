@@ -4,7 +4,7 @@
 
     <h2 class="m-3">Espace de connexion</h2>
 
-    <form class="col-12 border">
+    <form class="col-12">
       <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
       <input class="col-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
 
@@ -13,7 +13,7 @@
     </form>  
 
     <div >
-      <button class="m-3 p-2 button--layout" @click="postConnection('login', post, errorMessage)">Envoyer</button>
+      <button class="m-3 p-2 button--layout" @click="postConnection('login', post, errorMessage)">Me connecter</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
 

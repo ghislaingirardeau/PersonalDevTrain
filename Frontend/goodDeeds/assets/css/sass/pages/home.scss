@@ -1,9 +1,9 @@
 .header__display{
-  border-bottom: 2px blue solid;
+  border-bottom: 2px rgb(1, 138, 138) solid;
 }
 
 article {
-  border: 3px solid blue;
+  border: 3px solid rgb(1, 138, 138);
   border-radius: 5px 5px;
   box-shadow: 3px 3px 5px gray;
   & > h2 {
@@ -11,9 +11,12 @@ article {
   }
 }
 
+.welcome--message{
+  color: rgb(1, 138, 138);
+}
+
 .tree{
   padding: 0 15% 0 15%;
-
 }
 
 /* ANIMATION LEAVES */

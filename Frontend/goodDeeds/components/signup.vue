@@ -4,7 +4,7 @@
 
     <h2 class="m-3">Renseignez les informations pour valider votre inscription :</h2>
 
-    <form class="col-12 border">
+    <form class="col-12">
       <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
       <input class="col-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
 

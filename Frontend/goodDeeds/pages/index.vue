@@ -1,11 +1,11 @@
 <template>
-<main class="container text-center border">
-  <header class="border mt-4 mb-4">
+<main class="container d-flex flex-wrap justify-content-center text-center connection__bloc">
+  <header class="col-12 mt-4 mb-4">
     <h1>Bienvenue sur Be to Feel </h1>
     
   </header>
 
-  <nav class="row">
+  <nav class="col-8 border">
     <div class="button__log col-12">
       <button class="m-3 p-2 button--layout" @click="showLogin">Se connecter</button>
     
@@ -16,7 +16,7 @@
     <signup v-if="signup" :key="signup"/>
   </nav>
 
-  <article class="p-4">
+  <div class="col-8 mt-5 border">
 
     <h2 class="mb-4">Présentation du concept</h2>
 
@@ -26,7 +26,7 @@
     graphique de vos émotions à travers le temps.
     </p>
   
-  </article>    
+  </div>    
 
   
 

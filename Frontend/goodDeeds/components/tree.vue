@@ -1,5 +1,5 @@
 <script>
-import {emotionsColor} from '@/store/functions'
+import {emotionsColor} from '@/store/treeFunction'
 
 export default {
     data() {

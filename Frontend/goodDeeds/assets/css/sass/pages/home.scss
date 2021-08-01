@@ -3,6 +3,9 @@
 }
 
 article {
+  border: 3px solid blue;
+  border-radius: 5px 5px;
+  box-shadow: 3px 3px 5px gray;
   & > h2 {
     font-size: $titleSizeh1;
   }
@@ -10,6 +13,7 @@ article {
 
 .tree{
   padding: 0 15% 0 15%;
+
 }
 
 /* ANIMATION LEAVES */

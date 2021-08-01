@@ -11,8 +11,8 @@
                     <b-modal id="modal-1" title="Liste émotions positives">
                       <b-form-row>
                           <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
-                              <label :for="item" class="label__display">{{item}}
-                                    <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
+                              <label :for="item" class="label__display">{{upperFirstLetter(item)}}
+                                    <input type="radio" :value="upperFirstLetter(item)" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
                                     <span class="checkmark"><fa icon="check" /></span>
                               </label>
                           </b-col>
@@ -27,8 +27,8 @@
                     <b-modal id="modal-2" title="Liste émotions négatives">
                       <b-form-row>
                           <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
-                                <label class="label__display" :for="item">{{item}}
-                                    <input type="radio" :value="item" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
+                                <label class="label__display" :for="item">{{upperFirstLetter(item)}}
+                                    <input type="radio" :value="upperFirstLetter(item)" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
                                     <span class="checkmark"><fa icon="check" /></span>
                                 </label>
                           </b-col>
@@ -74,6 +74,7 @@
 
 <script>
 import emotions from '@/store/emotions'
+import { upperFirstLetter } from '@/store/functions'
 
 export default {
     data() {
@@ -91,7 +92,7 @@ export default {
                 eltSelection.classList.add('reveal-1')
                 const eltLegend = document.getElementById('aside__legend')
                 eltLegend.classList.add('reveal-2')
-            }, 1000)
+            }, 500)
         }
     },
     methods: {
@@ -137,8 +138,9 @@ export default {
         },
         negativeSelect() {
             this.kindOfFeel = 'negative'
-        }
-    }
+        },
+        upperFirstLetter
+    },
 }
 </script>
 

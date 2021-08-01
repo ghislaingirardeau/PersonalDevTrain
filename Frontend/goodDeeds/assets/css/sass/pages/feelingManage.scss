@@ -5,8 +5,9 @@
 }
 
 .aside__selection, .aside__legend{
-    border: 2px solid blue;
+    border: 3px solid blue;
     border-radius: 5px 5px;
+    box-shadow: 3px 3px 5px gray;  
 }
 
 .button__feel{
@@ -23,7 +24,6 @@
     &:hover{
         color: white;
         border: 2px solid rgb(163, 163, 163);
-
     }
 }
 

@@ -8,12 +8,12 @@
     </nav>
   </header>
 
-  <main class="row">
+  <main class="row justify-content-around">
 
     <transition name="fade" appear>
-      <article v-show="dataLoad" id="tree__bloc" class="col-8">
+      <article v-show="dataLoad" id="tree__bloc" class="col-7">
 
-        <h2 class="mb-5 text-center">Mon arbre d'emotions</h2>
+        <h2 class="mb-5 mt-1 text-center">Mon arbre d'emotions</h2>
         <tree :emotion="emotion" :key="reload"/>
 
       </article>

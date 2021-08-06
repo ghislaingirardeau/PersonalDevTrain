@@ -65,7 +65,7 @@ export default {
                   data.positive.forEach(element => {
                       this.emotion.push(element.feeling_pos)
                   });
-                 
+                 console.log(data)
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

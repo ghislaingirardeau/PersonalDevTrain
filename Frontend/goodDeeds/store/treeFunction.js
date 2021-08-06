@@ -3,7 +3,6 @@
 export function emotionsColor (emotion) {
     let index = 0 /* envoie l'index a l'objet */
     const object = document.getElementsByClassName(`Vector`)
-    let fear = ['scared', 'terrifier', 'insecure', 'nervous', 'horrfied']
     /* Ajout une class appear a chaque index tant que index est inferieur au nombre d'emotions */
         
     do {
@@ -11,7 +10,7 @@ export function emotionsColor (emotion) {
         object[index].style.animationDelay = `${index * 0.1}s`;
         /* envoie une couleur suivant emotion negative */
         
-        switch (emotion[index]) {
+        switch (emotion[index].toLowerCase()) {
             /*colors HSV: primary 98%, 82% \ secondary 69%, 87% \ third 39%, 92%*/
             case 'fear' : object[index].setAttribute('fill', '#d11c04') /* red  */
             break;

@@ -44,7 +44,7 @@ path[class*='appear'] {
 /* ANIMATION TREE APPEARED */
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .7s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;

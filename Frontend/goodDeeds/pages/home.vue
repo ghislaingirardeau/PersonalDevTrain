@@ -11,7 +11,7 @@
   <main class="row justify-content-around">
 
     <transition name="fade" appear>
-      <article v-show="dataLoad" id="tree__bloc" class="col-7">
+      <article v-if="dataLoad" id="tree__bloc" class="col-7">
 
         <h2 class="mb-5 mt-1 text-center">Mon arbre d'emotions</h2>
         <tree :emotion="emotion" :key="reload"/>
@@ -55,6 +55,7 @@ export default {
       })
       .then(response => {
           if(response.ok) {
+            this.dataLoad = true /* affiche le composant lorsque la reponse arrive */
               response.json()
               .then(data => {
                 /* Recupere toutes les emotions dans un tableau */
@@ -64,8 +65,7 @@ export default {
                   data.positive.forEach(element => {
                       this.emotion.push(element.feeling_pos)
                   });
-                  
-                 this.dataLoad = true
+                 
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

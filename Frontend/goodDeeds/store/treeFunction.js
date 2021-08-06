@@ -8,7 +8,7 @@ export function emotionsColor (emotion) {
         
     do {
         object[index].classList.add("appear")
-        object[index].style.animationDelay = `${index * 0.2}s`;
+        object[index].style.animationDelay = `${index * 0.1}s`;
         /* envoie une couleur suivant emotion negative */
         
         switch (emotion[index]) {

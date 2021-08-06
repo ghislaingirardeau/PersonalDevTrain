@@ -22,6 +22,21 @@ exports.allFeeling = (req, res, next) => {
     })
 }
 
+exports.sharedFeeling = (req, res, next) => { 
+    
+    const sql = `CALL share_user("${req.body.user_id}")`
+    connection.query(sql, (error, results, fields) => {
+
+        if (error) {
+            res.status(400).json({message: "echec"})
+        } else if (results) {
+            res.status(200).json({
+                results
+            })
+        }
+    })
+}
+
 exports.createnegative = (req, res, next) => { 
     
     const sql = `CALL add_negative("${req.body.user_id}", "${req.body.feeling}")`

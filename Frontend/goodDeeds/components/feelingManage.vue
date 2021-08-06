@@ -86,14 +86,12 @@ export default {
     },
 
     mounted() {
-        if(this.$parent.dataLoad === true) {
-            setTimeout(function() {
-                const eltSelection = document.getElementById('aside__selection')
-                eltSelection.classList.add('reveal-1')
-                const eltLegend = document.getElementById('aside__legend')
-                eltLegend.classList.add('reveal-2')
-            }, 500)
-        }
+        setTimeout(function() {
+            const eltSelection = document.getElementById('aside__selection')
+            eltSelection.classList.add('reveal-1')
+            const eltLegend = document.getElementById('aside__legend')
+            eltLegend.classList.add('reveal-2')
+        }, 500)
     },
     methods: {
         postFeeling() {

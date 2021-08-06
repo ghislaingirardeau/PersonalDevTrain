@@ -47,7 +47,7 @@ exports.signup = (req, res, next) => {
                                 pseudo: userSelect[0].pseudo,
                                 userId: userSelect[0].id,
                                 token: jwt.sign({
-                                    userId: userSelect[0].id}, 'CLE TOKEN SECRET',
+                                    userId: userSelect[0].id}, `${process.env.CLE}`,
                                     { expiresIn: '24h'}),
                                 role: userSelect[0].roles
                             })

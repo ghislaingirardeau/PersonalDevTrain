@@ -44,7 +44,7 @@ export default {
       let user_id = sessionStorage.getItem('userId')
       let token = sessionStorage.getItem('token')
       const userFeel = {user_id: user_id}
-
+      
       fetch("http://localhost:3000/api/feeling/", {
           method: "POST",
           headers: {
@@ -65,7 +65,6 @@ export default {
                   data.positive.forEach(element => {
                       this.emotion.push(element.feeling_pos)
                   });
-                 console.log(data)
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

@@ -10,7 +10,9 @@ export default {
         emotion : Array,
     },
     mounted (){
-        emotionsColor(this.emotion)
+        if(this.emotion.length > 0) {
+            emotionsColor(this.emotion)
+        }
     }
 }
 </script>

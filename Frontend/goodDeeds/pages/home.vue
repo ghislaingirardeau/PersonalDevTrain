@@ -73,6 +73,29 @@ export default {
             })
           }
       })
+
+      fetch("http://localhost:3000/api/feeling/share", {
+          method: "POST",
+          headers: {
+          "content-type": "application/json",
+          "Authorization" : 'Bearer ' + token
+          },
+          body: JSON.stringify(userFeel)
+      })
+      .then(response => {
+          if(response.ok) {
+              response.json()
+              .then(data => {
+                console.log(data)               
+              })
+          } else { /* sinon j'envoie une erreur */
+            response.json()
+            .then(data => {
+              console.log(data) /* renvoie error du backend sur le frontend */
+            })
+          }
+      })
+
     },
     methods: {
       disconnect() {

@@ -22,7 +22,7 @@
 
                 <div class="col-6">
 
-                    <b-button v-b-modal.modal-2 class="mb-3 button__feel button__feel--colordark">Negative</b-button>
+                    <b-button v-b-modal.modal-2 class="mb-3 button__feel button__feel--colordark" >Negative</b-button>
 
                     <b-modal id="modal-2" title="Liste émotions négatives">
                       <b-form-row>
@@ -38,7 +38,7 @@
             
                 <div class="col-12 text-center">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
-                    <button class="btn btn-primary" v-if="feeling" @click="postFeeling">Valider</button> 
+                    <button id="btn-validate" class="btn btn-primary" v-show="feeling" @click="postFeeling">Valider</button> 
                 </div>
             </div>
             
@@ -86,12 +86,24 @@ export default {
     },
 
     mounted() {
+
+        /* APPEARS ELEMENT WITH DELAY */
         setTimeout(function() {
             const eltSelection = document.getElementById('aside__selection')
             eltSelection.classList.add('reveal-1')
             const eltLegend = document.getElementById('aside__legend')
             eltLegend.classList.add('reveal-2')
         }, 500)
+
+        /* TIMER DISABLE VALIDATE EVERY 6H */
+        let dateNow = Math.round(Date.now() / 1000)
+        let lastValidation = localStorage.getItem('lastValidation')
+
+        if((dateNow - lastValidation) < 120 ) {
+            /* 6h = 21600s */
+            const boutonValidate = document.getElementById('btn-validate')
+            boutonValidate.setAttribute("disabled", "")
+        } 
     },
     methods: {
         postFeeling() {
@@ -126,11 +138,16 @@ export default {
                 /* envoie la nouvelle emotion dans le tableau arbre et reload le composant */
                 this.$parent.emotion.push(this.feeling)
                 this.$parent.reload = !this.$parent.reload
+                /* compteur temps pour une prochaine activation des boutons */
+                let timeValidation = Math.round(Date.now() / 1000)
+                localStorage.setItem('lastValidation', timeValidation);
 
             } else {
                 console.log('selectionner une emotion')
             }
         },
+        
+        /* SEND TO THE RIGHT ROUTE DB */
         positiveSelect() {
             this.kindOfFeel = 'positive'
         },

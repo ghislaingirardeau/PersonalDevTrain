@@ -22,16 +22,17 @@ exports.allFeeling = (req, res, next) => {
     })
 }
 
-exports.sharedFeeling = (req, res, next) => { 
-    
-    const sql = `CALL share_user("${req.body.user_id}")`
+exports.sharedFeeling = (req, res, next) => {
+     
+    const sql = `call user_share(${req.body.user_id})`
     connection.query(sql, (error, results, fields) => {
 
         if (error) {
             res.status(400).json({message: "echec"})
         } else if (results) {
             res.status(200).json({
-                results
+                positive: results[0],
+                negative: results[1]
             })
         }
     })

@@ -36,7 +36,7 @@ exports.signup = (req, res, next) => {
                 else if(results){
                     
                     /* const sql = `CALL signup(@pseudo, @email, @password)`; */
-                    const sql = `INSERT INTO User (pseudo, email, password)
+                    const sql = `INSERT INTO user (pseudo, email, password)
                     VALUES (@pseudo, @email, @password);`; 
                     connection.query(sql, (error, result, fields) => {
                         /* let userSelect = result[0]
@@ -56,6 +56,7 @@ exports.signup = (req, res, next) => {
                         } */
                         if (error) {
                             res.status(400).json({message: "pseudo existe deja"})
+                            console.log(error)
                         }
                         else if(result){ 
                             const sql = `SELECT pseudo, id, roles FROM user WHERE pseudo=@pseudo AND email=@email;`

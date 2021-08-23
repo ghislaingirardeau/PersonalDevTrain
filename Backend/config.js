@@ -3,7 +3,7 @@
 
 /* Pour une connection en ligne à mysql exporter configWeb (par défaut) */
 let configWeb = {
-    host: 'freedb.tech',
+    host: 'sql11.freemysqlhosting.net',
     port: 3306,
     user: `${process.env.USER_DB}`,
     password: `${process.env.PASSWORD_DB}`,
@@ -21,4 +21,4 @@ let config = {
 /* ALTER USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges; POUR AVOIR LES DROITS DE CONNECTIONS*/
 
-module.exports = config; /* Changer ici le choix de la connection */
+module.exports = configWeb; /* Changer ici le choix de la connection */

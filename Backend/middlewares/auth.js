@@ -7,7 +7,7 @@ const authentification = (req, res, next) => {
         const decodedToken = jwt.verify(token, `${process.env.CLE}`)
         const tokenUserId = decodedToken.userId
         if (req.body.user_id && req.body.user_id != tokenUserId) {
-            res.status(404).json({error :"Cet Id n'existe pas !"})
+            res.status(404).json({error :"Cet Id ne correspond pas !"})
         }
         else {
             next()

@@ -35,9 +35,11 @@ exports.signup = (req, res, next) => {
                 }
                 else if(results){
                     
-                    const sql = `CALL signup(@pseudo, @email, @password)`;
+                    /* const sql = `CALL signup(@pseudo, @email, @password)`; */
+                    const sql = `INSERT INTO User (pseudo, email, password)
+                    VALUES (@pseudo, @email, @password);`; 
                     connection.query(sql, (error, result, fields) => {
-                        let userSelect = result[0]
+                        /* let userSelect = result[0]
                     
                         if (error || userSelect[0].Status === "Error") {
                             res.status(400).json({message: userSelect[0].Response})
@@ -51,7 +53,28 @@ exports.signup = (req, res, next) => {
                                     { expiresIn: '24h'}),
                                 role: userSelect[0].roles
                             })
+                        } */
+                        if (error) {
+                            res.status(400).json({message: "pseudo existe deja"})
                         }
+                        else if(result){ 
+                            const sql = `SELECT pseudo, id, roles FROM user WHERE pseudo=@pseudo AND email=@email;`
+                            connection.query(sql, (error, result, fields) => {
+                                if (error) {
+                                    res.status(400).json({message: "erreur de selection"})
+                                }
+                                else if(result) {
+                                    res.status(200).json({
+                                        pseudo: result[0].pseudo,
+                                        userId: result[0].id,
+                                        token: jwt.sign({
+                                            userId: result[0].id}, `${process.env.CLE}`,
+                                            { expiresIn: '24h'}),
+                                        role: result[0].roles
+                                    })
+                                }
+                            })
+                        } 
                     });
                 }
             });

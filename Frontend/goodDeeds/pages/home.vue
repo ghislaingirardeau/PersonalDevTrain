@@ -59,12 +59,10 @@ export default {
               response.json()
               .then(data => {
                 /* Recupere toutes les emotions dans un tableau */
-                  data.negative.forEach(element => {
-                      this.emotion.push(element.feeling_neg)
-                  });
-                  data.positive.forEach(element => {
-                      this.emotion.push(element.feeling_pos)
-                  });
+                data.results.forEach(element => {
+                    this.emotion.push(element.feel)
+                });
+                 
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

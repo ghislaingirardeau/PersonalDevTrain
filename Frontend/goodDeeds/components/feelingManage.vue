@@ -36,7 +36,7 @@
                     </b-modal>
                 </div>
             
-                <div class="col-12 text-center" v-show="feeling" :key="feeling">
+                <div class="col-12 text-center" v-show="feeling">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
                     <button id="btn-validate" class="btn btn-primary" @click="postFeeling">Valider</button> 
                     <button class="btn btn-warning" @click="cancelFeeling">Annuler</button> 
@@ -85,7 +85,7 @@ export default {
             kindOfFeel: String, /* envoie dans le bon tableau coté mysql */
         }
     },
-
+    
     mounted() {
 
         /* APPEARS ELEMENT WITH DELAY */
@@ -106,6 +106,7 @@ export default {
             boutonValidate.setAttribute("disabled", "")
         } 
     },
+    
     methods: {
         postFeeling() {
             if(this.feeling != undefined) {
@@ -151,9 +152,11 @@ export default {
         /* SEND TO THE RIGHT ROUTE DB */
         positiveSelect() {
             this.kindOfFeel = 'positive'
+            this.$bvModal.hide('modal-1')
         },
         negativeSelect() {
             this.kindOfFeel = 'negative'
+            this.$bvModal.hide('modal-2')
         },
         cancelFeeling() {
             this.feeling = undefined

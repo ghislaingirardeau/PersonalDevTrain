@@ -36,9 +36,10 @@
                     </b-modal>
                 </div>
             
-                <div class="col-12 text-center">
+                <div class="col-12 text-center" v-show="feeling" :key="feeling">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
-                    <button id="btn-validate" class="btn btn-primary" v-show="feeling" @click="postFeeling">Valider</button> 
+                    <button id="btn-validate" class="btn btn-primary" @click="postFeeling">Valider</button> 
+                    <button class="btn btn-warning" @click="cancelFeeling">Annuler</button> 
                 </div>
             </div>
             
@@ -98,8 +99,8 @@ export default {
         /* TIMER DISABLE VALIDATE EVERY 6H */
         let dateNow = Math.round(Date.now() / 1000)
         let lastValidation = localStorage.getItem('lastValidation')
-
-        if((dateNow - lastValidation) < 120 ) {
+        
+        if((dateNow - lastValidation) < 12000 ) {
             /* 6h = 21600s */
             const boutonValidate = document.getElementById('btn-validate')
             boutonValidate.setAttribute("disabled", "")
@@ -153,6 +154,9 @@ export default {
         },
         negativeSelect() {
             this.kindOfFeel = 'negative'
+        },
+        cancelFeeling() {
+            this.feeling = undefined
         },
         upperFirstLetter
     },

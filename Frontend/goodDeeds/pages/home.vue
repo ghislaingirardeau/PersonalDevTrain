@@ -62,7 +62,6 @@ export default {
                 data.results.forEach(element => {
                     this.emotion.push(element.feel)
                 });
-                 
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

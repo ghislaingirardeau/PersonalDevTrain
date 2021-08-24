@@ -5,11 +5,11 @@
     <h2 class="m-3">Espace de connexion</h2>
 
     <form class="col-12">
-      <label class="col-4 m-3" for="pseudo" >Mon pseudo</label>
-      <input class="col-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
+      <label class="col-12 col-lg-4 m-3" for="pseudo" >Mon pseudo</label>
+      <input class="col-12 col-lg-4 m-3" for="pseudo" id="pseudo" type="text"  v-model="post.pseudo" required> <!-- copie les données dans le data post  -->
 
-      <label class="col-4 m-3" for="password" >Mot de passe</label>
-      <input class="col-4 m-3" for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
+      <label class="col-12 col-lg-4 m-3" for="password" >Mot de passe</label>
+      <input class="col-12 col-lg-4 m-3" for="password" id="password" type="password" v-model="post.password" required> <!-- copie les données dans le data post  -->
     </form>  
 
     <div >

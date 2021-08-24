@@ -1,16 +1,16 @@
 <template>
-        <aside class="col-4 text-center aside__bloc">
+        <aside class="col-12 col-xl-4 text-center aside__bloc">
 
-            <div id="aside__selection" class="row aside__selection mb-5 p-2 load">
+            <div id="aside__selection" class="row aside__selection mt-3 mt-xl-0 mb-3 mb-xl-5 p-2 load">
                 <h2 class="col-12 aside__bloc--title mb-4">Sélectionne une émotion</h2>              
 
                 <div class="col-6">
 
                     <b-button v-b-modal.modal-1 class="mb-3 button__feel button__feel--colorlight">Positive</b-button>
 
-                    <b-modal id="modal-1" title="Liste émotions positives">
+                    <b-modal id="modal-1" title="Liste émotions positives" size="lg">
                       <b-form-row>
-                          <b-col cols="4" v-for="item in emotionsList.positive" :key="item" >
+                          <b-col cols="6" lg="3" v-for="item in emotionsList.positive" :key="item" >
                               <label :for="item" class="label__display">{{upperFirstLetter(item)}}
                                     <input type="radio" :value="upperFirstLetter(item)" :id="item" name="emotion" v-model="feeling" @click="positiveSelect">
                                     <span class="checkmark"><fa icon="check" /></span>
@@ -24,9 +24,9 @@
 
                     <b-button v-b-modal.modal-2 class="mb-3 button__feel button__feel--colordark" >Negative</b-button>
 
-                    <b-modal id="modal-2" title="Liste émotions négatives">
+                    <b-modal id="modal-2" title="Liste émotions négatives" size="lg">
                       <b-form-row>
-                          <b-col cols="4" v-for="item in emotionsList.negative" :key="item" >
+                          <b-col cols="6" lg="3" v-for="item in emotionsList.negative" :key="item" >
                                 <label class="label__display" :for="item">{{upperFirstLetter(item)}}
                                     <input type="radio" :value="upperFirstLetter(item)" :id="item" name="emotion" v-model="feeling" @click="negativeSelect">
                                     <span class="checkmark"><fa icon="check" /></span>
@@ -45,7 +45,7 @@
             <div id="aside__legend" class="row aside__legend p-2 load">
                 <h2 class="aside__bloc--title col-12 mb-5">Catégories d'émotions</h2>
 
-                <div class="d-flex flex-wrap justify-content-around col-6 mb-3 legend" v-for="item in emotionsList.main" :key="item.feel">
+                <div class="d-flex flex-wrap justify-content-around col-6 col-sm-4 col-xl-6 mb-3 legend" v-for="item in emotionsList.main" :key="item.feel">
                     <div>
                         <svg wclassth="30" height="30" viewBox="595 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g>

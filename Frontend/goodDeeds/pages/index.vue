@@ -5,7 +5,7 @@
     
   </header>
 
-  <nav class="col-8 border rounded">
+  <nav class="col-12 col-md-8 border rounded">
     <div class="button__log col-12">
       <button class="m-3 p-2 button--layout" @click="showLogin">Se connecter</button>
     

@@ -16,7 +16,11 @@ article {
 }
 
 .tree{
-  padding: 0 15% 0 15%;
+  
+  & > svg {
+    object-fit: cover;
+    width: 100%;
+  }
 }
 
 /* ANIMATION LEAVES */

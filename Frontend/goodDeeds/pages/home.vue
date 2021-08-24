@@ -1,9 +1,9 @@
 <template>
 <div class="container align-items-center" >
-  <header class="row d-flex justify-content-around align-items-center mt-3 mb-3 pb-2 header__display">
-    <h3 class="col-4">Be to feel</h3>
-    <h3 class="col-4 text-center welcome--message">Bienvenue {{pseudo}}</h3>
-    <nav class="col-3 text-right">
+  <header class="row d-flex justify-content-around align-items-center my-3 pb-2 text-center header__display">
+    <h3 class="col-12 col-lg-2 my-2">Be to feel</h3>
+    <h3 class="col-12 col-lg-8 my-2 welcome--message">Bienvenue {{pseudo}}</h3>
+    <nav class="col-12 col-lg-2 my-2">
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
@@ -11,7 +11,7 @@
   <main class="row justify-content-around">
 
     <transition name="fade" appear>
-      <article v-if="dataLoad" id="tree__bloc" class="col-7">
+      <article v-if="dataLoad" id="tree__bloc" class="col-12 col-xl-7">
 
         <h2 class="mb-5 mt-1 text-center">Mon arbre d'emotions</h2>
         <tree :emotion="emotion" :key="reload"/>
@@ -72,7 +72,7 @@ export default {
           }
       })
 
-      fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
+      /* fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
           method: "POST",
           headers: {
           "content-type": "application/json",
@@ -86,13 +86,13 @@ export default {
               .then(data => {
                 console.log(data)               
               })
-          } else { /* sinon j'envoie une erreur */
+          } else { 
             response.json()
             .then(data => {
-              console.log(data) /* renvoie error du backend sur le frontend */
+              console.log(data) 
             })
           }
-      })
+      }) */
 
     },
     methods: {

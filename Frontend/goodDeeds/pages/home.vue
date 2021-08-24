@@ -45,7 +45,7 @@ export default {
       let token = sessionStorage.getItem('token')
       const userFeel = {user_id: user_id}
       
-      fetch("http://localhost:3000/api/feeling/", {
+      fetch("https://apigooddeeds.herokuapp.com/api/feeling/", {
           method: "POST",
           headers: {
           "content-type": "application/json",
@@ -72,7 +72,7 @@ export default {
           }
       })
 
-      fetch("http://localhost:3000/api/feeling/share", {
+      fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
           method: "POST",
           headers: {
           "content-type": "application/json",

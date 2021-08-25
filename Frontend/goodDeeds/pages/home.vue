@@ -20,7 +20,7 @@
     </transition>
 
     <feelingManage /> 
-    <searchUser :userShared="userShared" :userOndemand="userOndemand" />
+    <searchUser :userShared="userShared" :userOndemand="userOndemand" :key="reloadsearchUser"/>
 
   </main>
   
@@ -39,7 +39,8 @@ export default {
         dataLoad: false,
         pseudo : String,
         userShared: [],
-        userOndemand: []
+        userOndemand: [],
+        reloadsearchUser: 0
       }
     },
     created () {

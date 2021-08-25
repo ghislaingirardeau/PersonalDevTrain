@@ -26,7 +26,7 @@ exports.allFeeling = (req, res, next) => {
 }
 
 exports.sharedFeeling = (req, res, next) => {
-     
+     /* test */
     const sql = `call user_share(${req.body.user_id})`
     connection.query(sql, (error, results, fields) => {
 

@@ -21,6 +21,13 @@
 
     <feelingManage /> <!-- aside -->
 
+    <article class="col-12 col-xl-7">
+      <h2>sharing Tree</h2>
+      <input type="text">
+      <button>rechercher</button>
+      <button>Partager</button>
+    </article>
+
   </main>
   
 </div>
@@ -71,7 +78,7 @@ export default {
           }
       })
 
-      /* fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
+      fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
           method: "POST",
           headers: {
           "content-type": "application/json",
@@ -91,7 +98,7 @@ export default {
               console.log(data) 
             })
           }
-      }) */
+      })
 
     },
     methods: {

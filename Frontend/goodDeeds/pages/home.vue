@@ -39,7 +39,7 @@ export default {
         pseudo : String
       }
     },
-    mounted () {
+    created () {
       this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
       let user_id = sessionStorage.getItem('userId')
       let token = sessionStorage.getItem('token')

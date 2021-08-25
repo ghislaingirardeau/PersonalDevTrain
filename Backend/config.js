@@ -21,4 +21,4 @@ let config = {
 /* ALTER USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges; POUR AVOIR LES DROITS DE CONNECTIONS*/
 
-module.exports = configWeb; /* Changer ici le choix de la connection */
+module.exports = config; /* Changer ici le choix de la connection */

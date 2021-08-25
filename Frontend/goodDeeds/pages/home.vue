@@ -19,14 +19,8 @@
       </article>
     </transition>
 
-    <feelingManage /> <!-- aside -->
-
-    <article class="col-12 col-xl-7">
-      <h2>sharing Tree</h2>
-      <input type="text">
-      <button>rechercher</button>
-      <button>Partager</button>
-    </article>
+    <feelingManage /> 
+    <searchUser :userShared="userShared" :userOndemand="userOndemand" />
 
   </main>
   
@@ -43,16 +37,19 @@ export default {
         emotion: [],
         reload: false,
         dataLoad: false,
-        pseudo : String
+        pseudo : String,
+        userShared: [],
+        userOndemand: []
       }
     },
     created () {
+      
       this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
       let user_id = sessionStorage.getItem('userId')
       let token = sessionStorage.getItem('token')
       const userFeel = {user_id: user_id}
       
-      fetch("https://apigooddeeds.herokuapp.com/api/feeling/", {
+      fetch("http://localhost:3000/api/feeling/", {
           method: "POST",
           headers: {
           "content-type": "application/json",
@@ -66,9 +63,11 @@ export default {
               response.json()
               .then(data => {
                 /* Recupere toutes les emotions dans un tableau */
-                data.results.forEach(element => {
+                data.results[0].forEach(element => {
                     this.emotion.push(element.feel)
                 });
+                this.userShared = data.results[1]
+                this.userOndemand = data.results[2]
               })
           } else { /* sinon j'envoie une erreur */
             response.json()
@@ -77,29 +76,6 @@ export default {
             })
           }
       })
-
-      fetch("https://apigooddeeds.herokuapp.com/api/feeling/share", {
-          method: "POST",
-          headers: {
-          "content-type": "application/json",
-          "Authorization" : 'Bearer ' + token
-          },
-          body: JSON.stringify(userFeel)
-      })
-      .then(response => {
-          if(response.ok) {
-              response.json()
-              .then(data => {
-                console.log(data)               
-              })
-          } else { 
-            response.json()
-            .then(data => {
-              console.log(data) 
-            })
-          }
-      })
-
     },
     methods: {
       disconnect() {
@@ -107,7 +83,7 @@ export default {
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('pseudo')
         sessionStorage.removeItem('role')
-      }
+      },
     }
 }
 </script>

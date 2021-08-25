@@ -38,7 +38,7 @@
             
                 <div class="col-12 text-center" v-show="feeling">
                     <p class="mb-4 feeling__selected">{{feeling}}</p>
-                    <button id="btn-validate" class="btn btn-primary" @click="postFeeling">Valider</button> 
+                    <button id="btn-validate" class="btn btn-primary" @click="postFeeling(feeling, kindOfFeel)">Valider</button> 
                     <button class="btn btn-warning" @click="cancelFeeling">Annuler</button> 
                 </div>
             </div>
@@ -75,7 +75,7 @@
 
 <script>
 import emotions from '@/store/emotions'
-import { upperFirstLetter } from '@/store/functions'
+import { upperFirstLetter, postFeeling } from '@/store/functions'
 
 export default {
     data() {
@@ -100,7 +100,7 @@ export default {
         let dateNow = Math.round(Date.now() / 1000)
         let lastValidation = localStorage.getItem('lastValidation')
         
-        if((dateNow - lastValidation) < 12000 ) {
+        if((dateNow - lastValidation) < 10 ) {
             /* 6h = 21600s */
             const boutonValidate = document.getElementById('btn-validate')
             boutonValidate.setAttribute("disabled", "")
@@ -108,47 +108,7 @@ export default {
     },
     
     methods: {
-        postFeeling() {
-            if(this.feeling != undefined) {
-                let user_id = sessionStorage.getItem('userId')
-                let token = sessionStorage.getItem('token')
-                /* creer objet a envoyer */
-                let postEmotion = {user_id: user_id, feeling: this.feeling}
-
-                /* route qui varie suivant le type d'emotion pour avoir 2 tableau distinct coté sql */
-                fetch(`https://apigooddeeds.herokuapp.com/api/feeling/${this.kindOfFeel}`, {
-                    method: "POST",
-                        headers: {
-                        "content-type": "application/json",
-                        "Authorization" : 'Bearer ' + token
-                        },
-                    body: JSON.stringify(postEmotion)
-                })
-                .then(response => {
-                    if(response.ok){
-                        response.json()
-                        .then(data => {
-                            console.log(data)
-                        })
-                    } else {
-                        response.json()
-                        .then(data => {
-                            console.log(data)
-                        })
-                    }
-                })
-                /* envoie la nouvelle emotion dans le tableau arbre et reload le composant */
-                this.$parent.emotion.push(this.feeling)
-                this.$parent.reload = !this.$parent.reload
-                /* compteur temps pour une prochaine activation des boutons */
-                let timeValidation = Math.round(Date.now() / 1000)
-                localStorage.setItem('lastValidation', timeValidation);
-
-            } else {
-                console.log('selectionner une emotion')
-            }
-        },
-        
+        postFeeling, 
         /* SEND TO THE RIGHT ROUTE DB */
         positiveSelect() {
             this.kindOfFeel = 'positive'
@@ -166,6 +126,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>

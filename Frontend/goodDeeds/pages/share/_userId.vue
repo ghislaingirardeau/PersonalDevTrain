@@ -1,8 +1,9 @@
 <template>
     <main>
-        <NuxtLink to="/home" @click="reloadTree">home</NuxtLink>
+        <NuxtLink to="/home" >home</NuxtLink>
         <h2>{{user_id}}</h2>
         <tree :emotion="emotion" :key="reload"/>
+        
     </main>
 </template>
 
@@ -42,16 +43,10 @@ export default {
           } else { /* sinon j'envoie une erreur */
             response.json()
             .then(data => {
-              console.log(data) /* renvoie error du backend sur le frontend */
+              console.log(data.message) /* renvoie error du backend sur le frontend */
             })
           }
       })
     },
-    methods: {
-        reloadTree() {
-            this.$parent.reload != this.$parent.reload
-        }
-    }
-
 }
 </script>

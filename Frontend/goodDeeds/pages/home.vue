@@ -34,13 +34,13 @@ import { upperFirstLetter } from '@/store/functions'
 export default {
     data () {
       return {
-        emotion: [],
-        reload: false,
-        dataLoad: false,
+        emotion: [], /* Array 3 results call api */
+        reload: false, /* reload tree component */
+        dataLoad: false, /* a la reception des donnees de l'api */
         pseudo : String,
-        userShared: [],
-        userOndemand: [],
-        reloadsearchUser: 0
+        userShared: [], /* Array 2 results call api */
+        userOndemand: [], /* Array 3 results call api */
+        reloadsearchUser: 0 /* on change of share users data */
       }
     },
     created () {
@@ -69,6 +69,7 @@ export default {
                 });
                 this.userShared = data.results[1]
                 this.userOndemand = data.results[2]
+                this.reload = !this.reload
               })
           } else { /* sinon j'envoie une erreur */
             response.json()

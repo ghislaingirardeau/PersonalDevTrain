@@ -59,7 +59,7 @@ exports.feelingUser = (req, res, next) => {
     connection.query(sql, (error, results, fields) => {
 
         if (error) {
-            res.status(400).json({message: "echec"})
+            res.status(400).json({message: "echec load data usershared"})
             console.log(error)
         } else if (results) {
             res.status(200).json({

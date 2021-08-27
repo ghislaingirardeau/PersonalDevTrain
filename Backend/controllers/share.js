@@ -34,7 +34,37 @@ exports.responseSharing = (req, res, next) => {
         if (error) {
             res.status(400).json({message: "erreur envoie de réponse"})
         } else if (results) {
-            res.status(200).json({message: "votre réponse a été envoyé"})
+            if(req.body.responseStatus === "authorized"){ /* si la réponse du front est autorisé */
+                const sql = `INSERT INTO sharing (connectFrom, status, connectTo) VALUES (${req.body.user_id}, 'authorized', ${req.body.idFrom})`
+                connection.query(sql, (error, results, fields) => {
+                    if (error) {
+                        res.status(400).json({message: "Erreur invitation reverse"})
+                    } else if (results) {
+                        res.status(200).json({message: "update et insertion de connexion ok"})
+                    }
+                })
+
+            } else { /* si la reponse du front est rejeté */
+                res.status(200).json({message: "Rejet de l'invitation"})
+            }
+        }
+    })
+}
+
+exports.feelingUser = (req, res, next) => { 
+    /* renvoie 3 tableaux: un avec toutes les emotions
+    un avec tous les utilisateurs partagé ou rejeté
+    un avec toutes les demandes de partage en cours */
+    const sql = `CALL user_connect("${req.body.user_id}")`
+    connection.query(sql, (error, results, fields) => {
+
+        if (error) {
+            res.status(400).json({message: "echec"})
+            console.log(error)
+        } else if (results) {
+            res.status(200).json({
+                results                
+            })
         }
     })
 }

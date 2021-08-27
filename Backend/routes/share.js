@@ -6,5 +6,6 @@ const router = express.Router()
 
 router.post('/searchUser', authentification, share.searchUser)
 router.put('/responseSharing', authentification, share.responseSharing)
+router.post('/feelingUser', share.feelingUser)
 
 module.exports = router

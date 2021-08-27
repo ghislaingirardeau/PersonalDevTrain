@@ -8,7 +8,9 @@
       
       <h3>Mes personnes suivies</h3>
       <div v-for="user in userShared" :key="user.connectTo">
-        <h4 v-if="user.status === 'authorized'">acces autorisé: {{user.pseudo}}</h4>
+        <h4 v-if="user.status === 'authorized'">
+          <NuxtLink :to="{ name: 'share-userId', params: {id: user.connectTo}}">{{user.pseudo}}</NuxtLink>
+        </h4>
         <div v-if="user.status === 'on demand'">
           <h3 >mes demandes en attente </h3>
           <h4>{{user.pseudo}}</h4>
@@ -57,7 +59,7 @@ export default {
                   response.json()
                   .then(data => {
                     this.searchResults = data.message
-                    this.$parent.reloadsearchUser += 1
+                    /* this.$parent.reloadsearchUser += 1 */
                   })
               } else { 
                 response.json()
@@ -84,7 +86,7 @@ export default {
                   response.json()
                   .then(data => {
                     this.responseSharingResult = data.message
-                    this.$parent.reloadsearchUser += 1
+                    /* this.$parent.reloadsearchUser += 1 */
                   })
               } else { 
                 response.json()

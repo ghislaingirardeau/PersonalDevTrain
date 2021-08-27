@@ -5,7 +5,9 @@ const connection = mysql.createConnection(config)
 
 
 exports.allFeeling = (req, res, next) => { 
-
+    /* renvoie 3 tableaux: un avec toutes les emotions
+    un avec tous les utilisateurs partagé ou rejeté
+    un avec toutes les demandes de partage en cours */
     const sql = `CALL user_connect("${req.body.user_id}")`
     connection.query(sql, (error, results, fields) => {
 

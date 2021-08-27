@@ -112,11 +112,11 @@ export default {
         /* SEND TO THE RIGHT ROUTE DB */
         positiveSelect() {
             this.kindOfFeel = 'positive'
-            this.$bvModal.hide('modal-1')
+            this.$bvModal.hide('modal-positif')
         },
         negativeSelect() {
             this.kindOfFeel = 'negative'
-            this.$bvModal.hide('modal-2')
+            this.$bvModal.hide('modal-negatif')
         },
         cancelFeeling() {
             this.feeling = undefined

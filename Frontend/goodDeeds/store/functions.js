@@ -37,7 +37,7 @@ export function postFeeling (feeling, kindOfFeel) {
       let postEmotion = {user_id: user_id, feeling: feeling}
 
       /* route qui varie suivant le type d'emotion pour avoir 2 tableau distinct coté sql */
-      fetch(`https://apigooddeeds.herokuapp.com/api/feeling/${kindOfFeel}`, {
+      fetch(`http://localhost:3000/api/feeling/${kindOfFeel}`, {
           method: "POST",
               headers: {
               "content-type": "application/json",

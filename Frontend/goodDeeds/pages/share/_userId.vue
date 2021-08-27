@@ -1,10 +1,20 @@
 <template>
-    <main>
-        <NuxtLink to="/home" >home</NuxtLink>
-        <h2>{{user_id}}</h2>
-        <tree :emotion="emotion" :key="reload"/>
+    <div class="container align-items-center"> 
+        <header class="row d-flex justify-content-around align-items-center my-3 pb-2 text-center header__display">
+            <h3 class="col-12 col-lg-2 my-2">Be to feel</h3>
+            <h3 class="col-12 col-lg-8 my-2 welcome--message">Bienvenue {{pseudo}}</h3>
+            <nav class="col-12 col-lg-2 my-2">
+              <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
+              <NuxtLink to="/home" >home</NuxtLink>
+            </nav>
+        </header> 
         
-    </main>
+        <main class="row justify-content-around">
+            <h2 class="col-12 mb-5 mt-1 text-center">Voici l'arbre de {{pseudo}}</h2>
+            <tree :emotion="emotion" :key="reload"/>
+        </main>       
+        
+    </div>
 </template>
 
 <script>
@@ -13,7 +23,8 @@ export default {
         return {
             user_id: this.$route.params.id,
             reload: false,
-            emotion: []
+            emotion: [],
+            pseudo: String
         }
     },
     mounted () {
@@ -38,6 +49,8 @@ export default {
                 data.results[0].forEach(element => {
                     this.emotion.push(element.feel)
                 });
+                const getPseudo = data.results[1]
+                this.pseudo= getPseudo[0].pseudo
                 this.reload = !this.reload
               })
           } else { /* sinon j'envoie une erreur */

@@ -55,7 +55,7 @@ exports.feelingUser = (req, res, next) => {
     /* renvoie 3 tableaux: un avec toutes les emotions
     un avec tous les utilisateurs partagé ou rejeté
     un avec toutes les demandes de partage en cours */
-    const sql = `CALL user_connect("${req.body.user_id}")`
+    const sql = `CALL user_share("${req.body.user_id}")`
     connection.query(sql, (error, results, fields) => {
 
         if (error) {

@@ -7,11 +7,14 @@
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
+  <nav>
+    <searchUser :userShared="userShared" :userOndemand="userOndemand" :key="reloadsearchUser"/>
+  </nav>
 
   <main class="row justify-content-around">
 
     <transition name="fade" appear>
-      <article v-if="dataLoad" id="tree__bloc" class="col-12 col-xl-7">
+      <article v-if="dataLoad" class="col-12 col-xl-7">
 
         <h2 class="mb-5 mt-1 text-center">Mon arbre d'emotions</h2>
         <tree :emotion="emotion" :key="reload"/>
@@ -20,7 +23,6 @@
     </transition>
 
     <feelingManage /> 
-    <searchUser :userShared="userShared" :userOndemand="userOndemand" :key="reloadsearchUser"/>
 
   </main>
   

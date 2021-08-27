@@ -1,23 +1,27 @@
 <template>
     <div class="container align-items-center"> 
         <header class="row d-flex justify-content-around align-items-center my-3 pb-2 text-center header__display">
-            <h3 class="col-12 col-lg-2 my-2">Be to feel</h3>
-            <h3 class="col-12 col-lg-8 my-2 welcome--message">Bienvenue {{pseudo}}</h3>
-            <nav class="col-12 col-lg-2 my-2">
+            <h3 class="col-12 col-lg-3 my-2">Be to feel</h3>
+            <h3 class="col-12 col-lg-6 my-2 welcome--message">Bienvenue {{pseudo}}</h3>
+            <nav class="col-12 col-lg-3 my-2 d-flex justify-content-around">
               <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
               <NuxtLink to="/home" >home</NuxtLink>
             </nav>
         </header> 
         
+        <transition name="fade" appear>
         <main class="row justify-content-around">
             <h2 class="col-12 mb-5 mt-1 text-center">Voici l'arbre de {{pseudo}}</h2>
             <tree :emotion="emotion" :key="reload"/>
-        </main>       
+        </main>      
+        </transition> 
         
     </div>
 </template>
 
 <script>
+import { upperFirstLetter } from '@/store/functions'
+
 export default {
     data() {
         return {
@@ -50,7 +54,7 @@ export default {
                     this.emotion.push(element.feel)
                 });
                 const getPseudo = data.results[1]
-                this.pseudo= getPseudo[0].pseudo
+                this.pseudo= upperFirstLetter(getPseudo[0].pseudo)
                 this.reload = !this.reload
               })
           } else { /* sinon j'envoie une erreur */

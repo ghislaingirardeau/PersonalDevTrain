@@ -6,9 +6,9 @@
 
                 <div class="col-6">
 
-                    <b-button v-b-modal.modal-1 class="mb-3 button__feel button__feel--colorlight">Positive</b-button>
+                    <b-button v-b-modal.modal-positif class="mb-3 button__feel button__feel--colorlight">Positive</b-button>
 
-                    <b-modal id="modal-1" title="Liste émotions positives" size="lg">
+                    <b-modal id="modal-positif" title="Liste émotions positives" size="lg">
                       <b-form-row>
                           <b-col cols="6" lg="3" v-for="item in emotionsList.positive" :key="item" >
                               <label :for="item" class="label__display">{{upperFirstLetter(item)}}
@@ -22,9 +22,9 @@
 
                 <div class="col-6">
 
-                    <b-button v-b-modal.modal-2 class="mb-3 button__feel button__feel--colordark" >Negative</b-button>
+                    <b-button v-b-modal.modal-negatif class="mb-3 button__feel button__feel--colordark" >Negative</b-button>
 
-                    <b-modal id="modal-2" title="Liste émotions négatives" size="lg">
+                    <b-modal id="modal-negatif" title="Liste émotions négatives" size="lg">
                       <b-form-row>
                           <b-col cols="6" lg="3" v-for="item in emotionsList.negative" :key="item" >
                                 <label class="label__display" :for="item">{{upperFirstLetter(item)}}

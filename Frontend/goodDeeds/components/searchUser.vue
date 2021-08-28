@@ -7,13 +7,13 @@
         <label for="searchPseudo"></label>
         <input type="text" for="searchPseudo" v-model="searchPseudo" class="form-control" placeholder="Taper son pseudo ici" aria-label="Taper son pseudo ici">
         <div class="input-group-append">
-          <button v-b-toggle.collapse-1 class="btn btn-primary" @click="shareRequest">Share</button>
+          <button class="btn btn-primary" @click="shareRequest">Rechercher et partager</button>
         </div>
       </div>
-    <!-- La réponse de la recherche si succes ou non -->
-    <b-collapse id="collapse-1" class="mt-2">
-      <p class="text-left col-12">{{searchResults}}</p>
-    </b-collapse>  
+      <!-- La réponse de la recherche si succes ou non -->
+      <div v-if="searchResults" :key="searchResults" class="mt-2">
+        <p class="text-left col-12">{{searchResults}}</p>
+      </div>  
     </div>
 
     <!-- modal affichage des personnes avec qui user est connecté ainsi que les demandes en cours -->  

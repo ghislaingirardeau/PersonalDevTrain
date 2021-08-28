@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { upperFirstLetter } from '@/store/functions'
+import { upperFirstLetter, disconnect } from '@/store/functions'
 
 export default {
     data() {
@@ -35,6 +35,9 @@ export default {
             emotion: [],
             pseudo: String,
         }
+    },
+    methods: {
+      disconnect
     },
     mounted () {
       

@@ -70,3 +70,10 @@ export function postFeeling (feeling, kindOfFeel) {
   }  
 }
 
+/* DISCONNECTION */
+export function disconnect() {
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('pseudo')
+    sessionStorage.removeItem('role')
+}

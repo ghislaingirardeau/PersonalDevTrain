@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { upperFirstLetter } from '@/store/functions'
+import { upperFirstLetter, disconnect } from '@/store/functions'
 
 export default {
     data () {
@@ -82,12 +82,7 @@ export default {
       })
     },
     methods: {
-      disconnect() {
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('userId')
-        sessionStorage.removeItem('pseudo')
-        sessionStorage.removeItem('role')
-      },
+      disconnect
     }
 }
 </script>

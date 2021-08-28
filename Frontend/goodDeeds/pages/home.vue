@@ -7,7 +7,7 @@
       <NuxtLink to="/" @click.native="disconnect">Déconnexion</NuxtLink>
     </nav>
   </header>
-  <nav>
+  <nav class="row justify-content-center">
     <searchUser :userShared="userShared" :userOndemand="userOndemand" :key="reloadsearchUser"/>
   </nav>
 

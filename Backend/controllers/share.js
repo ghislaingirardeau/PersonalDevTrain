@@ -10,8 +10,8 @@ exports.searchUser = (req, res, next) => {
  
         if (error) {
             res.status(400).json({message: "erreur de recherche"})
-        } else if (results.length == 0) { /* si requete ne renvoie aucun pseudo alors renvoie un tableau vide */
-             res.status(200).json({message: "Ce pseudo n'existe pas"})
+        } else if (results.length === 0) { /* si requete ne renvoie aucun pseudo alors renvoie un tableau vide */
+             res.status(200).json({message: "undefined"})
         } else if (results.length > 0) { /* si j'ai un resultat et donc le pseudo existe */
              const idFind = results[0].id
              const sql = `INSERT INTO sharing (connectFrom, status, connectTo) VALUES (${req.body.user_id}, 'on demand', ${idFind})`
@@ -19,7 +19,10 @@ exports.searchUser = (req, res, next) => {
                  if (error) {
                      res.status(400).json({message: "erreur insertion"})
                  } else if (result) {
-                     res.status(200).json({message: "demande de partage envoyé"})
+                     res.status(200).json({
+                         message: "demande de partage envoyé",
+                         idFind: idFind
+                        })
                  }
              })
         }

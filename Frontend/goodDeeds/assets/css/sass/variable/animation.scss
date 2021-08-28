@@ -39,7 +39,7 @@ path[class*='appear'] {
 /* ANIMATION SEARCH RESULT APPEARED */
 
 .slideY-enter-active {
-  animation: slide_down 1s;
+  animation: slide_down .5s;
 }
 
 @keyframes slide_down {

@@ -27,8 +27,7 @@
             <NuxtLink :to="{ name: 'share-userId', params: {id: user.connectTo}}">{{upperFirstLetter(user.pseudo)}}</NuxtLink>
           </p>
           <div v-if="user.status === 'on demand'">
-            <h3 >Mes demandes en cours </h3>
-            <h4>{{upperFirstLetter(user.pseudo)}}</h4>
+            <p >{{upperFirstLetter(user.pseudo)}} en cours</p>
           </div>
         </div>      
       </b-modal>      
@@ -39,9 +38,9 @@
         <div v-for="user in userOndemand" :key="user.connectfrom" class="mb-4">
           <p class="col-12">{{upperFirstLetter(user.pseudo)}} souhaite partager son arbre avec vous</p>
           <div class="col-12 d-inline">
-            <button @click="responseDemand('authorized', user.connectfrom)" class="btn btn-outline-success">Accepter</button>
+            <button @click="responseDemand('authorized', user.connectfrom, user.pseudo)" class="btn btn-outline-success">Accepter</button>
             <!-- Si autorisation renvoie aussi une autorisation d'acces pour l'autre utilisateur -->
-            <button @click="responseDemand('rejected', user.connectfrom)" class="btn btn-outline-danger">Refuser</button>
+            <button @click="responseDemand('rejected', user.connectfrom, user.pseudo)" class="btn btn-outline-danger">Refuser</button>
           </div>
         </div>
         <strong>{{responseSharingResult}}</strong>
@@ -57,18 +56,21 @@
 import { upperFirstLetter } from '@/store/functions'
 
 export default {
-    data() {
-        return{
-          searchPseudo: '',
-          searchResults: '',
-          responseSharingResult: '' 
-        }
-    },
-    props: {
-      userShared: Array,
-      userOndemand: Array
-    },
-    methods: {
+  data() {
+    return{
+      searchPseudo: '',
+      searchResults: '',
+      responseSharingResult: '' 
+    }
+  },
+  props: {
+    userShared: Array,
+    userOndemand: Array
+  },
+  mounted() {
+    
+  },
+  methods: {
       upperFirstLetter,
         shareRequest() {
         const token = sessionStorage.getItem('token')
@@ -86,8 +88,15 @@ export default {
               if(response.ok) {
                   response.json()
                   .then(data => {
-                    this.searchResults = data.message
-                    /* this.$parent.reloadsearchUser += 1 */
+                    if(data.message === 'undefined') {
+                        this.searchResults = "Ce pseudo n'existe pas"
+                    } else {
+                    console.log(data.message)
+                    this.$parent.userShared.push({
+                       connectTo: data.idFind, pseudo: this.searchPseudo, status: "on demand"
+                    })
+                    }
+                    this.$parent.reloadsearchUser += 1
                   })
               } else { 
                 response.json()
@@ -97,7 +106,7 @@ export default {
               }
           })
         },
-        responseDemand(res, idFrom) {
+        responseDemand(res, idFrom, pseudo) {
           const user_id = sessionStorage.getItem('userId')
           const token = sessionStorage.getItem('token')
           const dataShare = {responseStatus: res, user_id: user_id, idFrom: idFrom}
@@ -113,7 +122,19 @@ export default {
               if(response.ok) {
                   response.json()
                   .then(data => {
-                    this.responseSharingResult = data.message
+                    if(res === "authorized"){ /* si authorized alors je mets à jour le data des composants sans reload */
+                      /* met à jour le tableau share */
+                      this.$parent.userShared.push({
+                       connectTo: idFrom, pseudo: pseudo, status: "authorized"
+                      })
+                      /* supprime le pseudo du tableau on demand  */
+                      const indexElement = this.$parent.userOndemand.findIndex((element) => element.pseudo === pseudo)
+                      this.$parent.userOndemand.splice(indexElement, 1)
+                      /* reload le composant avec les tableau MAJ */
+                      this.$parent.reloadsearchUser += 1
+                    } else {
+                      this.responseSharingResult = data.message
+                    }
                   })
               } else { 
                 response.json()
@@ -124,7 +145,7 @@ export default {
           })   
           this.$bvModal.hide('modal-demand')     
         }
-    }
+  }
 }
 </script>
 

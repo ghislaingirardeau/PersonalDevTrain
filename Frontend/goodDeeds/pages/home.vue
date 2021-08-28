@@ -1,5 +1,5 @@
 <template>
-<div class="container align-items-center" >
+<div class="container align-items-center">
   <header class="row d-flex justify-content-around align-items-center my-3 pb-2 text-center header__display">
     <h3 class="col-12 col-lg-2 my-2">Be to feel</h3>
     <h3 class="col-12 col-lg-8 my-2 welcome--message">Bienvenue {{pseudo}}</h3>

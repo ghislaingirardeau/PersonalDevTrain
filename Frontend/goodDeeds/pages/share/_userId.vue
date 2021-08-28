@@ -1,5 +1,9 @@
 <template>
-    <div class="container align-items-center"> 
+
+  <div class="container align-items-center share_tree">
+
+    <transition name="fadeShare" appear>
+      <section>
         <header class="row d-flex justify-content-around align-items-center my-3 pb-2 text-center header__display">
             <h3 class="col-12 col-lg-3 my-2">Be to feel</h3>
             <h3 class="col-12 col-lg-6 my-2 welcome--message">Bienvenue {{pseudo}}</h3>
@@ -8,15 +12,16 @@
               <NuxtLink to="/home" >home</NuxtLink>
             </nav>
         </header> 
-        
-        <transition name="fade" appear>
-        <main class="row justify-content-around">
+    
+        <article class="row justify-content-around">
             <h2 class="col-12 mb-5 mt-1 text-center">Voici l'arbre de {{pseudo}}</h2>
             <tree :emotion="emotion" :key="reload"/>
-        </main>      
-        </transition> 
-        
-    </div>
+        </article> 
+      </section>     
+    </transition> 
+
+  </div>
+   
 </template>
 
 <script>
@@ -28,7 +33,7 @@ export default {
             user_id: this.$route.params.id,
             reload: false,
             emotion: [],
-            pseudo: String
+            pseudo: String,
         }
     },
     mounted () {
@@ -67,3 +72,4 @@ export default {
     },
 }
 </script>
+

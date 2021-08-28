@@ -1,0 +1,38 @@
+/* ANIMATION TREE APPEARED */
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .7s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+/* ANIMATION LEAVES */
+
+path[class*='Vector'] {
+    opacity: 0;
+}
+  
+path[class*='appear'] {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: feuille 4s forwards;
+}
+  
+@keyframes feuille {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+/* ON LOAD TREE SHARE PAGE */
+.fadeShare-enter-active, .fadeShare-leave-active {
+    transition: opacity 1s;
+  }
+  .fadeShare-enter, .fadeShare-leave-to {
+    opacity: 0;
+  }
+  

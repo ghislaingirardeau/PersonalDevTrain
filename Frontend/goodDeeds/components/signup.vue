@@ -16,7 +16,7 @@
     </form>
 
     <div >
-      <button class="m-3 p-2 button--layout" @click="postConnection('signup', post, errorMessage)">M'inscrire</button>
+      <button class="m-3 p-2 button--connect" @click="postConnection('signup', post, errorMessage)">M'inscrire</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
 

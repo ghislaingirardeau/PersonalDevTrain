@@ -21,13 +21,13 @@ exports.signup = (req, res, next) => {
 
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
     const regexPassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre et une chiffre */
-
+    const pseudoLowCase = req.body.pseudo.toLowerCase()
     if (regexEmail.test(req.body.email) === true && regexPassword.test(req.body.password) === true) { /* verifie la saiise des entrées */
         
         bcrypt.hash(req.body.password, salt)
         .then(hash => {
 
-            const sql = `SET @pseudo="${req.body.pseudo}", @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @password="${hash}";`
+            const sql = `SET @pseudo="${pseudoLowCase}", @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @password="${hash}";`
             connection.query(sql, (error, results, fields) => {
                 
                 if (error) {

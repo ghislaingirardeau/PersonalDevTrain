@@ -43,6 +43,7 @@
             <button @click="responseDemand('rejected', user.connectfrom, user.pseudo)" class="btn btn-outline-danger">Refuser</button>
           </div>
         </div>
+        <p v-if="userOndemand.length === 0">Aucune demande en cours</p>
         <strong>{{responseSharingResult}}</strong>
       </b-modal>
     </div>
@@ -53,7 +54,7 @@
 </template>
 
 <script>
-import { upperFirstLetter } from '@/store/functions'
+import { upperFirstLetter, shareRequest, responseDemand } from '@/store/functions'
 
 export default {
   data() {
@@ -71,80 +72,9 @@ export default {
     
   },
   methods: {
-      upperFirstLetter,
-        shareRequest() {
-        const token = sessionStorage.getItem('token')
-        const user_id = sessionStorage.getItem('userId')
-        const dataShare = {searchPseudo: this.searchPseudo, user_id: user_id}
-          fetch("http://localhost:3000/api/share/searchUser", {
-              method: "POST",
-              headers: {
-              "content-type": "application/json",
-              "Authorization" : 'Bearer ' + token
-              },
-              body: JSON.stringify(dataShare)
-          })
-          .then(response => {
-              if(response.ok) {
-                  response.json()
-                  .then(data => {
-                    if(data.message === 'undefined') {
-                        this.searchResults = "Ce pseudo n'existe pas"
-                    } else {
-                    console.log(data.message)
-                    this.$parent.userShared.push({
-                       connectTo: data.idFind, pseudo: this.searchPseudo, status: "on demand"
-                    })
-                    }
-                    this.$parent.reloadsearchUser += 1
-                  })
-              } else { 
-                response.json()
-                .then(data => {
-                  console.log(data) 
-                })
-              }
-          })
-        },
-        responseDemand(res, idFrom, pseudo) {
-          const user_id = sessionStorage.getItem('userId')
-          const token = sessionStorage.getItem('token')
-          const dataShare = {responseStatus: res, user_id: user_id, idFrom: idFrom}
-          fetch("http://localhost:3000/api/share/responseSharing", {
-              method: "PUT",
-              headers: {
-              "content-type": "application/json",
-              "Authorization" : 'Bearer ' + token
-              },
-              body: JSON.stringify(dataShare)
-          })
-          .then(response => {
-              if(response.ok) {
-                  response.json()
-                  .then(data => {
-                    if(res === "authorized"){ /* si authorized alors je mets à jour le data des composants sans reload */
-                      /* met à jour le tableau share */
-                      this.$parent.userShared.push({
-                       connectTo: idFrom, pseudo: pseudo, status: "authorized"
-                      })
-                      /* supprime le pseudo du tableau on demand  */
-                      const indexElement = this.$parent.userOndemand.findIndex((element) => element.pseudo === pseudo)
-                      this.$parent.userOndemand.splice(indexElement, 1)
-                      /* reload le composant avec les tableau MAJ */
-                      this.$parent.reloadsearchUser += 1
-                    } else {
-                      this.responseSharingResult = data.message
-                    }
-                  })
-              } else { 
-                response.json()
-                .then(data => {
-                  this.responseSharingResult = data.message
-                })
-              }
-          })   
-          this.$bvModal.hide('modal-demand')     
-        }
+    upperFirstLetter,
+    shareRequest,
+    responseDemand    
   }
 }
 </script>

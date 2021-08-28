@@ -1,5 +1,5 @@
 <template>
-  <section class="col-12 d-flex flex-wrap text-center" >
+  <section class="col-12 d-flex flex-wrap text-center mb-2" >
 
     <!-- block de recherche puis demande de partage -->
     <div class="col-12 col-lg-6 order-1 order-lg-0">

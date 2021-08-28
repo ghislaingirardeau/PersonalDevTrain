@@ -1,5 +1,5 @@
 <template>
-  <section class="col-12 d-flex flex-wrap mb-3 text-center" >
+  <section class="col-12 d-flex flex-wrap text-center" >
 
     <!-- block de recherche puis demande de partage -->
     <div class="col-12 col-lg-6 order-1 order-lg-0">
@@ -11,9 +11,11 @@
         </div>
       </div>
       <!-- La réponse de la recherche si succes ou non -->
+      <transition name="slideY">
       <div v-if="searchResults" :key="searchResults" class="mt-2">
         <p class="text-left col-12">{{searchResults}}</p>
       </div>  
+      </transition>
     </div>
 
     <!-- modal affichage des personnes avec qui user est connecté ainsi que les demandes en cours -->  

@@ -31,8 +31,28 @@ path[class*='appear'] {
 /* ON LOAD TREE SHARE PAGE */
 .fadeShare-enter-active, .fadeShare-leave-active {
     transition: opacity 1s;
+}
+.fadeShare-enter, .fadeShare-leave-to {
+  opacity: 0;
+}
+
+/* ANIMATION TREE APPEARED */
+
+.slideY-enter-active {
+  animation: slide_down 1s;
+}
+
+@keyframes slide_down {
+  0% {
+    opacity: 0;
+    height: 0px;
   }
-  .fadeShare-enter, .fadeShare-leave-to {
+  80%{
     opacity: 0;
   }
+  100% {
+    height: 40px;
+    opacity: 1;
+  }
+}
   

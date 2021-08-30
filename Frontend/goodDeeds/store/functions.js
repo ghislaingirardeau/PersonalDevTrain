@@ -109,11 +109,8 @@ export function shareRequest() {
                     if(data.message === 'undefined') {
                         this.searchResults = "Ce pseudo n'existe pas"
                     } else {
-                      console.log(data.message)
-                      this.$parent.userShared.push({
-                         connectTo: data.idFind, pseudo: this.searchPseudo, status: "on demand"
-                      })
-                      this.$parent.reloadsearchUser += 1
+                      const newSharing = {connectTo: data.idFind, pseudo: this.searchPseudo, status: "on demand"}
+                      this.$emit('update-sharing', {newSharing})
                     }
                   })
               } else { 
@@ -145,16 +142,16 @@ export function responseDemand(res, idFrom, pseudo) {
             .then(data => {
               if(res === "authorized"){ /* si authorized alors je mets à jour le data des composants sans reload */
                 /* met à jour le tableau share */
-                this.$parent.userShared.push({
-                 connectTo: idFrom, pseudo: pseudo, status: "authorized"
-                })
+                const newSharing = {connectTo: idFrom, pseudo: pseudo, status: "authorized"}
                 /* supprime le pseudo du tableau on demand  */
-                const indexElement = this.$parent.userOndemand.findIndex((element) => element.pseudo === pseudo)
-                this.$parent.userOndemand.splice(indexElement, 1)
-                /* reload le composant avec les tableau MAJ */
-                this.$parent.reloadsearchUser += 1
-              } else {
-                this.responseSharingResult = data.message
+                const indexElement = this.userOndemand.findIndex((element) => element.pseudo === pseudo)
+                this.$emit('update-sharing', {newSharing, indexElement})
+              } else { /* si la reponse est un refus */
+                console.log(data.message)
+                const newSharing = undefined
+                /* supprime le pseudo du tableau on demand  */
+                const indexElement = this.userOndemand.findIndex((element) => element.pseudo === pseudo)
+                this.$emit('update-sharing', {newSharing, indexElement})
               }
             })
         } else { 

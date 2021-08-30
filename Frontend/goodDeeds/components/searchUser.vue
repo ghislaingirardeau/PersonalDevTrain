@@ -1,6 +1,6 @@
 <template>
   <section class="col-12 d-flex flex-wrap text-center mb-2" >
-
+    <!-- <button @click="updateSharing">Emit Event</button> -->
     <!-- block de recherche puis demande de partage -->
     <div class="col-12 col-lg-6 order-1 order-lg-0">
       <div class="input-group">
@@ -74,7 +74,7 @@ export default {
   methods: {
     upperFirstLetter,
     shareRequest,
-    responseDemand    
+    responseDemand,
   }
 }
 </script>

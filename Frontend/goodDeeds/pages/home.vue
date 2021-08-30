@@ -8,7 +8,7 @@
     </nav>
   </header>
   <nav class="row justify-content-center">
-    <searchUser :userShared="userShared" :userOndemand="userOndemand" :key="reloadsearchUser"/>
+    <searchUser :userShared="userShared" :userOndemand="userOndemand" @update-sharing="updateUserShareArray"/>
   </nav>
 
   <main class="row justify-content-around">
@@ -42,7 +42,6 @@ export default {
         pseudo : String,
         userShared: [], /* Array 2 results call api */
         userOndemand: [], /* Array 3 results call api */
-        reloadsearchUser: 0 /* on change of share users data */
       }
     },
     created () {
@@ -82,7 +81,15 @@ export default {
       })
     },
     methods: {
-      disconnect
+      disconnect,
+      updateUserShareArray(payload) {
+          if(payload.newSharing != undefined){ /* si reponse rejeté renvoie undefined = pas besoin de mettre a jour le tableau */
+            this.userShared.push(payload.newSharing) /* ajout user autorisé */
+          }
+          if(payload.indexElement != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
+            this.userOndemand.splice(payload.indexElement, 1)
+          }
+        }
     }
 }
 </script>

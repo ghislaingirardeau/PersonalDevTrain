@@ -27,7 +27,7 @@
             <NuxtLink :to="{ name: 'share-userId', params: {id: user.connectTo}}">{{upperFirstLetter(user.pseudo)}}</NuxtLink>
           </p>
           <div v-if="user.status === 'on demand'">
-            <p >{{upperFirstLetter(user.pseudo)}} en cours</p>
+            <p >{{upperFirstLetter(user.pseudo)}} en attente de demande</p>
           </div>
         </div>      
       </b-modal>      

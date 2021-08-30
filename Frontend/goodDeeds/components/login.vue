@@ -13,7 +13,7 @@
     </form>  
 
     <div >
-      <button class="m-3 p-2 button--connect" @click="postConnection('login', post, errorMessage)">Me connecter</button>
+      <button class="m-3 p-2 button--connect" @click="postConnection('login', post)">Me connecter</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
 

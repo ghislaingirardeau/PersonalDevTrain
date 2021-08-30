@@ -7,7 +7,7 @@ export function upperFirstLetter(string) {
 /*  FUNCTION AXIOS FOR CONNECTION LOGIN AND SIGNUP */
 
 import axios from "axios"
-export function postConnection (connectionType, post, errorMessage) {
+export function postConnection (connectionType, post) {
     const data = JSON.stringify(post)
       axios.post("http://localhost:3000/api/" + connectionType, data, {
         headers: {
@@ -23,7 +23,7 @@ export function postConnection (connectionType, post, errorMessage) {
         window.open('/home', '_self')
 
       })
-      .catch((error) => errorMessage = error.response.data.message)
+      .catch((error) => this.errorMessage = error.response.data.message)
 }
 
 /*  CALL API FOR POSTFEELING */

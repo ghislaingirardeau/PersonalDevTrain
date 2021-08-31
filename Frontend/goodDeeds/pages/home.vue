@@ -83,9 +83,9 @@ export default {
     methods: {
       disconnect,
       updateUserShareArray(payload) {
-        console.log(payload)
           if(payload.newSharing != undefined){ /* si reponse rejeté renvoie undefined = pas besoin de mettre a jour le tableau */
             this.userShared.push(payload.newSharing) /* ajout user autorisé */
+            this.userOndemand.splice(payload.indexElement, 1)
           }
           else if(payload.indexElement != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
             this.userOndemand.splice(payload.indexElement, 1)

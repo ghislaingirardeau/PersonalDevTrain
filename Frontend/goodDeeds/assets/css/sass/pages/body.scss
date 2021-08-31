@@ -1,12 +1,18 @@
 h1, h2, h3 {
     font-family: $familymain;
+    color: $textColor;
 }
 
 p, label {
   font-family: $familymain;
   font-size: $fontparagraphe;
+  color: $textColor;
 }
 
 button, h5, a{
     font-family: $familylink;
+}
+
+body{
+  background-color: black;
 }

@@ -12,7 +12,7 @@
 
 .button__feel{
     color: rgb(85, 85, 85);
-    border: 2px solid rgb(29, 29, 29);
+    border: 2px solid rgb(85, 85, 85);
     font-weight: bold;
     transition: all .5s ease;
 
@@ -23,8 +23,7 @@
     }
     &:hover{
         color: white;
-        border: 2px solid rgb(163, 163, 163);
-        box-shadow: 3px 3px 5px rgb(163, 163, 163);
+        box-shadow: 2px 2px 5px rgb(163, 163, 163);
     }
 }
 
@@ -38,6 +37,7 @@
     user-select: none;
     font-family: $familyfeel;
     font-weight: bold;
+    color: $fontdark;
 }
 
 .label__display input{

@@ -2,7 +2,7 @@
   <section class="col-12 d-flex flex-wrap text-center mb-2" >
     <!-- block de recherche puis demande de partage -->
     <div class="col-12 col-lg-6 order-1 order-lg-0">
-      <div class="input-group">
+      <div class="input-group border--blue">
         <label for="searchPseudo"></label>
         <input type="text" for="searchPseudo" v-model="searchPseudo" class="form-control" placeholder="Taper son pseudo ici" aria-label="Taper son pseudo ici">
         <div class="input-group-append">
@@ -22,13 +22,13 @@
       <b-button v-b-modal.modal-share variant="warning" class="mb-2 mb-sm-0 mx-sm-2 btn--height">Mes relations <span class="badge badge-light">{{userShared.length}}</span></b-button>
       <b-modal id="modal-share" title="Liste des personnes suivies">
         <div v-for="user in userShared" :key="user.connectTo">
-          <span v-if="user.status === 'authorized'">
+          <span class="row justify-content-between mx-5 my-3" v-if="user.status === 'authorized'">
             <NuxtLink :to="{ name: 'share-userId', params: {id: user.connectTo}}">{{upperFirstLetter(user.pseudo)}}</NuxtLink>
-            <button @click="removeSharing(user)">Ne plus suivre</button>
+            <button @click="removeSharing(user)" class="btn--unfollow">Ne plus suivre</button>
           </span>
           
           <div v-if="user.status === 'on demand'">
-            <p >{{upperFirstLetter(user.pseudo)}} en attente de demande</p>
+            <p class="font-dark">{{upperFirstLetter(user.pseudo)}} en attente de demande</p>
           </div>
         </div>      
       </b-modal>      
@@ -37,15 +37,15 @@
       <b-button v-b-modal.modal-demand variant="info" class="mx-2 btn--height">Mes demandes <span class="badge badge-light">{{userOndemand.length}}</span></b-button>
       <b-modal id="modal-demand" title="Mes demandes à valider">
         <div v-for="user in userOndemand" :key="user.connectfrom" class="mb-4">
-          <p class="col-12">{{upperFirstLetter(user.pseudo)}} souhaite partager son arbre avec vous</p>
+          <p class="col-12 font-dark">{{upperFirstLetter(user.pseudo)}} souhaite partager son arbre avec vous</p>
           <div class="col-12 d-inline">
             <button @click="responseDemand('authorized', user.connectfrom, user.pseudo)" class="btn btn-outline-success">Accepter</button>
             <!-- Si autorisation renvoie aussi une autorisation d'acces pour l'autre utilisateur -->
             <button @click="responseDemand('rejected', user.connectfrom, user.pseudo)" class="btn btn-outline-danger">Refuser</button>
           </div>
         </div>
-        <p v-if="userOndemand.length === 0">Aucune demande en cours</p>
-        <strong>{{responseSharingResult}}</strong>
+        <p v-if="userOndemand.length === 0" class="font-dark">Aucune demande en cours</p>
+        <strong class="font-dark">{{responseSharingResult}}</strong>
       </b-modal>
     </div>
   </section>

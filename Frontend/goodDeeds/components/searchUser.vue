@@ -1,6 +1,5 @@
 <template>
   <section class="col-12 d-flex flex-wrap text-center mb-2" >
-    <!-- <button @click="updateSharing">Emit Event</button> -->
     <!-- block de recherche puis demande de partage -->
     <div class="col-12 col-lg-6 order-1 order-lg-0">
       <div class="input-group">
@@ -23,9 +22,11 @@
       <b-button v-b-modal.modal-share variant="warning" class="mb-2 mb-sm-0 mx-sm-2 btn--height">Mes relations <span class="badge badge-light">{{userShared.length}}</span></b-button>
       <b-modal id="modal-share" title="Liste des personnes suivies">
         <div v-for="user in userShared" :key="user.connectTo">
-          <p v-if="user.status === 'authorized'">
+          <span v-if="user.status === 'authorized'">
             <NuxtLink :to="{ name: 'share-userId', params: {id: user.connectTo}}">{{upperFirstLetter(user.pseudo)}}</NuxtLink>
-          </p>
+            <button @click="removeSharing(user)">Ne plus suivre</button>
+          </span>
+          
           <div v-if="user.status === 'on demand'">
             <p >{{upperFirstLetter(user.pseudo)}} en attente de demande</p>
           </div>
@@ -47,14 +48,12 @@
         <strong>{{responseSharingResult}}</strong>
       </b-modal>
     </div>
-
-
   </section>
 
 </template>
 
 <script>
-import { upperFirstLetter, shareRequest, responseDemand } from '@/store/functions'
+import { upperFirstLetter, shareRequest, responseDemand, removeSharing } from '@/store/functions'
 
 export default {
   data() {
@@ -75,6 +74,7 @@ export default {
     upperFirstLetter,
     shareRequest,
     responseDemand,
+    removeSharing
   }
 }
 </script>

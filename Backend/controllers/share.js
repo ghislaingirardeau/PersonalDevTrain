@@ -71,3 +71,24 @@ exports.feelingUser = (req, res, next) => {
         }
     })
 }
+
+exports.deleteSharing = (req, res, next) => { 
+
+    const sql = `SET @connectTo="${req.body.connectTo}", @user_id='${req.body.user_id}'`
+    connection.query(sql, (error, results, fields) => {
+
+        if (error) {
+            res.status(400).json({message: "erreur data"})
+        } else if (results) {
+            const sql = `CALL remove_sharing(@user_id, @connectTo)`  
+            connection.query(sql, (error, results, fields) => {
+
+                if (error) {
+                    res.status(400).json({message: "erreur suppression de user sharing"})
+                } else if (results) {
+                    res.status(200).json({message: "Vous ne suivez plus cette personne"})       
+                }
+            })      
+        }
+    })
+}

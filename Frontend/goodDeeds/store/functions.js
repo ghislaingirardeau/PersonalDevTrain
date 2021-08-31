@@ -109,6 +109,7 @@ export function shareRequest() {
                     if(data.message === 'undefined') {
                         this.searchResults = "Ce pseudo n'existe pas"
                     } else {
+                      this.searchResults = "Votre demande a été envoyé"
                       const newSharing = {connectTo: data.idFind, pseudo: this.searchPseudo, status: "on demand"}
                       this.$emit('update-sharing', {newSharing})
                     }
@@ -121,7 +122,6 @@ export function shareRequest() {
               }
           })
         }
-
 }
 
 export function responseDemand(res, idFrom, pseudo) {
@@ -163,5 +163,27 @@ export function responseDemand(res, idFrom, pseudo) {
     })   
     this.$bvModal.hide('modal-demand')     
 }
+
+export function removeSharing(user) {
+  const user_id = sessionStorage.getItem('userId')
+  const userTo = `${user.connectTo}`
+  const token = sessionStorage.getItem('token')
+  const dataShare = {user_id: user_id, connectTo: userTo}
+  const data = JSON.stringify(dataShare)
+  
+  axios.put("http://localhost:3000/api/share/remove", data, {
+    headers: {
+      "content-type": "application/json",
+      "Authorization" : 'Bearer ' + token
+    },
+  }) 
+  .then(response => {
+    console.log(response.data.message)
+    const updateOneShare = this.userShared.findIndex((element) => element.connectTo === userTo)
+    this.$emit('update-sharing', {updateOneShare})
+  })
+  .catch((error) => this.errorMessage = error.response.data.message)
+}
+
 
 /* END SHARING FEATURE */

@@ -68,7 +68,6 @@
                     <p class="col-12 mt-n3">{{upperFirstLetter(item.feel)}}</p>
                 </div>
             </div>
-
         </aside>
 
 </template>
@@ -87,6 +86,12 @@ export default {
     },
     
     mounted() {
+        emotions.positive.sort(function (a, b) {
+            return a.localeCompare(b);
+        })
+        emotions.negative.sort(function (a, b) {
+            return a.localeCompare(b);
+        });
 
         /* APPEARS ELEMENT WITH DELAY */
         setTimeout(function() {

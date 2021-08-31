@@ -52,8 +52,6 @@ export default {
         this.signup = true
     }
   }
-
-
 }
 </script>
 

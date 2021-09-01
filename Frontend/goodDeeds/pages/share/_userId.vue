@@ -15,7 +15,7 @@
     
         <article class="col-12 col-xl-7">
             <h2 class="col-12 mb-5 mt-1 text-center">Voici l'avatar de {{pseudoShare}}</h2>
-            <emoImage :avatar="avatar" :emotion="emotion" :key="reload"/>
+            <emoImage :avatar="avatarShare" :emotion="emotion" :key="reload"/>
         </article> 
       </section>     
     </transition> 
@@ -35,7 +35,7 @@ export default {
             emotion: [],
             pseudoShare: String,
             pseudo: String,
-            avatar: 'bird'
+            avatarShare: 'null'
         }
     },
     methods: {
@@ -64,8 +64,10 @@ export default {
                 data.results[0].forEach(element => {
                     this.emotion.push(element.feel)
                 });
-                const getPseudo = data.results[1]
-                this.pseudoShare= upperFirstLetter(getPseudo[0].pseudo)
+                const getUserElement = data.results[1]
+                
+                this.pseudoShare= upperFirstLetter(getUserElement[0].pseudo)
+                this.avatarShare= `${getUserElement[0].avatar}`
                 this.reload = !this.reload
               })
           } else { /* sinon j'envoie une erreur */

@@ -60,7 +60,6 @@ exports.feelingUser = (req, res, next) => {
     un avec toutes les demandes de partage en cours */
     const sql = `CALL user_share("${req.body.user_id}")`
     connection.query(sql, (error, results, fields) => {
-
         if (error) {
             res.status(400).json({message: "echec load data usershared"})
             console.log(error)

@@ -16,3 +16,15 @@ button, h5, a{
 body{
   background: linear-gradient(135deg,rgb(112, 112, 112) 0%, rgb(31, 31, 31) 100%);
 }
+
+.img--body{
+  height: 80px;
+  & > svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.svg--rotate{
+  transform: rotateY(180deg);
+}

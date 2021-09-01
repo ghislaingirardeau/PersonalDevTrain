@@ -15,9 +15,11 @@ article {
   color: $textColor;
 }
 
-.tree{
+.bloc__svg{
   height: 450px;
+  position: relative;
   & > svg {
+    position: absolute;
     width: 100%;
     height: 100%;
   }

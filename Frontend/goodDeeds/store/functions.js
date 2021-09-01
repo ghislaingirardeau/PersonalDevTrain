@@ -20,6 +20,7 @@ export function postConnection (connectionType, post) {
         sessionStorage.setItem('userId', response.data.userId)
         sessionStorage.setItem('pseudo', response.data.pseudo)
         sessionStorage.setItem('role', response.data.role)
+        sessionStorage.setItem('avatar', response.data.avatar)
         window.open('/home', '_self')
 
       })

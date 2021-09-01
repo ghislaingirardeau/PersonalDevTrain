@@ -53,10 +53,10 @@ export default {
       post: {
         pseudo: null,
         email: null,
-        password: null
+        password: null,
+        avatar: null
       },
       errorMessage: null,
-      avatar: null
     }
   },
   methods: {
@@ -68,7 +68,7 @@ export default {
         element.classList.remove('card__signup--selected')
       })
       target.classList.add('card__signup--selected')
-      this.avatar = event.target.id
+      this.post.avatar = event.target.id
     }
   }
 }

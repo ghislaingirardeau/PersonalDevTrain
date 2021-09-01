@@ -15,7 +15,25 @@
       <input class="col-12 col-lg-4 m-3" for="password" id="password" type="password" v-model="post.password" placeholder="Minimum 6 lettres et un chiffre" required> <!-- copie les données dans le data post  -->
     </form>
 
-    <div >
+    <div class="col-12 mt-3">
+      <h3>Choisie une représentation :</h3>
+      <b-container fluid class="p-4">
+        
+        <b-row>
+          <b-col>
+            <b-img class="card__signup" id="bird" @click="imagePicked" thumbnail fluid src="@/assets/public/images/1751300.svg" alt="Image oiseau"></b-img>
+          </b-col>
+          <b-col>
+            <b-img class="card__signup" id="lotus" @click="imagePicked" thumbnail fluid src="@/assets/public/images/1817513.svg" alt="Image lotus"></b-img>
+          </b-col>
+          <b-col>
+            <b-img class="card__signup" id="tree" @click="imagePicked" thumbnail fluid src="@/assets/public/images/1289280.svg" alt="Image arbre"></b-img>
+          </b-col>
+        </b-row>
+      </b-container>    
+    </div>
+
+    <div >{{avatar}}
       <button class="m-3 p-2 button--connect" @click="postConnection('signup', post, errorMessage)">M'inscrire</button>
       <p class="message--error">{{errorMessage}}</p>
     </div>
@@ -37,11 +55,21 @@ export default {
         email: null,
         password: null
       },
-      errorMessage: null
+      errorMessage: null,
+      avatar: null
     }
   },
   methods: {
-    postConnection
+    postConnection,
+    imagePicked(event) {
+      let target = document.getElementById(`${event.target.id}`)
+      let cards = document.getElementsByClassName('card__signup')
+      cards.forEach(element => {
+        element.classList.remove('card__signup--selected')
+      })
+      target.classList.add('card__signup--selected')
+      this.avatar = event.target.id
+    }
   }
 }
 </script>

@@ -13,9 +13,9 @@
             </nav>
         </header> 
     
-        <article class="row justify-content-around">
-            <h2 class="col-12 mb-5 mt-1 text-center">Voici l'arbre de {{pseudo}}</h2>
-            <tree :emotion="emotion" :key="reload"/>
+        <article class="col-12 col-xl-7">
+            <h2 class="col-12 mb-5 mt-1 text-center">Voici l'avatar de {{pseudoShare}}</h2>
+            <emoImage :avatar="avatar" :emotion="emotion" :key="reload"/>
         </article> 
       </section>     
     </transition> 
@@ -33,7 +33,9 @@ export default {
             user_id: this.$route.params.id,
             reload: false,
             emotion: [],
+            pseudoShare: String,
             pseudo: String,
+            avatar: 'bird'
         }
     },
     methods: {
@@ -41,7 +43,8 @@ export default {
     },
     mounted () {
       
-      let token = sessionStorage.getItem('token')
+      const token = sessionStorage.getItem('token')
+      this.pseudo = sessionStorage.getItem('pseudo')
       const userFeel = {user_id: this.user_id}
       
       fetch("http://localhost:3000/api/share/feelingUser", {
@@ -62,7 +65,7 @@ export default {
                     this.emotion.push(element.feel)
                 });
                 const getPseudo = data.results[1]
-                this.pseudo= upperFirstLetter(getPseudo[0].pseudo)
+                this.pseudoShare= upperFirstLetter(getPseudo[0].pseudo)
                 this.reload = !this.reload
               })
           } else { /* sinon j'envoie une erreur */

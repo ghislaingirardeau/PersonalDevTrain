@@ -44,7 +44,7 @@
 
 <script>
 
-import {postConnection} from '@/store/functions'
+import {postConnection} from '@/store/dataConnection'
 
 export default {
 

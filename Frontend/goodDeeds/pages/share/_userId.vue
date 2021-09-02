@@ -26,7 +26,7 @@ import { upperFirstLetter, disconnect } from '@/store/functions'
 export default {
     data() {
         return {
-            user_id: this.$route.params.id,
+            idUserShared: this.$route.params.id,
             reload: false,
             emotion: [],
             pseudoShare: String,
@@ -41,7 +41,7 @@ export default {
       
       const token = sessionStorage.getItem('token')
       this.pseudo = sessionStorage.getItem('pseudo')
-      const userFeel = {user_id: this.user_id}
+      const userFeel = {user_id: this.idUserShared}
       
       fetch("http://localhost:3000/api/share/feelingUser", {
           method: "POST",

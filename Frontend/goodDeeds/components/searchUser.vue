@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { upperFirstLetter, shareRequest, responseDemand, removeSharing } from '@/store/functions'
+import { upperFirstLetter} from '@/store/functions'
+import { shareRequest, responseDemand, removeSharing } from '@/store/dataSharing'
 
 export default {
   data() {

@@ -30,7 +30,7 @@ export default {
             reload: false,
             emotion: [],
             pseudoShare: String,
-            pseudo: String,
+            pseudo: '',
             avatarShare: 'null'
         }
     },
@@ -40,7 +40,7 @@ export default {
     mounted () {
       
       const token = sessionStorage.getItem('token')
-      this.pseudo = sessionStorage.getItem('pseudo')
+      this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
       const userFeel = {user_id: this.idUserShared}
       
       fetch("http://localhost:3000/api/share/feelingUser", {

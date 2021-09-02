@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { upperFirstLetter, disconnect } from '@/store/functions'
+import { upperFirstLetter, disconnect, updateUserShareArray } from '@/store/functions'
 
 export default {
     data () {
@@ -35,7 +35,7 @@ export default {
         emotion: [], /* Array 3 results call api */
         reload: false, /* reload tree component */
         dataLoad: false, /* a la reception des donnees de l'api */
-        pseudo : String,
+        pseudo : '',
         userShared: [], /* Array 2 results call api */
         userOndemand: [], /* Array 3 results call api */
         avatar: String
@@ -80,18 +80,7 @@ export default {
     },
     methods: {
       disconnect,
-      updateUserShareArray(payload) {
-          if(payload.newSharing != undefined){ /* si reponse rejeté renvoie undefined = pas besoin de mettre a jour le tableau */
-            this.userShared.push(payload.newSharing) /* ajout user autorisé */
-            this.userOndemand.splice(payload.indexElement, 1)
-          }
-          else if(payload.indexElement != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
-            this.userOndemand.splice(payload.indexElement, 1)
-          }
-          else if(payload.updateOneShare != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
-            this.userShared.splice(payload.updateOneShare, 1)
-          }
-        }
+      updateUserShareArray
     }
 }
 </script>

@@ -4,6 +4,19 @@ export function upperFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1) 
 }
 
+export function updateUserShareArray(payload) {
+  if(payload.newSharing != undefined){ /* si reponse rejeté renvoie undefined = pas besoin de mettre a jour le tableau */
+    this.userShared.push(payload.newSharing) /* ajout user autorisé */
+    this.userOndemand.splice(payload.indexElement, 1)
+  }
+  else if(payload.indexElement != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
+    this.userOndemand.splice(payload.indexElement, 1)
+  }
+  else if(payload.updateOneShare != undefined){ /* supprime le user du tableau de demande quelsoit accepter ou rejeter */
+    this.userShared.splice(payload.updateOneShare, 1)
+  }
+}
+
 /*  CALL API FOR POSTFEELING */
 
 export function postFeeling (feeling, kindOfFeel) {

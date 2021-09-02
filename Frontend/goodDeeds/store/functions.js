@@ -19,7 +19,6 @@ export function updateUserShareArray(payload) {
   }
 }
 
-
 /* DISCONNECTION */
 export function disconnect() {
     sessionStorage.removeItem('token')
@@ -28,3 +27,24 @@ export function disconnect() {
     sessionStorage.removeItem('role')
 }
 
+/* APPEARS ELEMENT WITH DELAY */
+export function revealAnimation(){
+  setTimeout(function() {
+    const eltSelection = document.getElementById('aside__selection')
+    eltSelection.classList.add('reveal-1')
+    const eltLegend = document.getElementById('aside__legend')
+    eltLegend.classList.add('reveal-2')
+}, 500)
+}
+
+/* TIMER DISABLE VALIDATE EVERY 6H */
+export function timerSelectFeeling(){
+  let dateNow = Math.round(Date.now() / 1000)
+  let lastValidation = localStorage.getItem('lastValidation')
+  
+  if((dateNow - lastValidation) < 10 ) {
+      /* 6h = 21600s */
+      const boutonValidate = document.getElementById('btn-validate')
+      boutonValidate.setAttribute("disabled", "")
+  } 
+}

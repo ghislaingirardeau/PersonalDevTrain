@@ -28,6 +28,7 @@
 
 <script>
 import { upperFirstLetter, disconnect, updateUserShareArray } from '@/store/functions'
+import {getFeelingUser } from '@/store/dataFeeling'
 
 export default {
     data () {
@@ -45,38 +46,16 @@ export default {
       
       this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
       this.avatar = sessionStorage.getItem('avatar')
-      let user_id = sessionStorage.getItem('userId')
-      let token = sessionStorage.getItem('token')
-      const userFeel = {user_id: user_id}
       
-      fetch("http://localhost:3000/api/feeling/", {
-          method: "POST",
-          headers: {
-          "content-type": "application/json",
-          "Authorization" : 'Bearer ' + token
-          },
-          body: JSON.stringify(userFeel)
-      })
-      .then(response => {
-          if(response.ok) {
-            this.dataLoad = true /* affiche le composant lorsque la reponse arrive */
-              response.json()
-              .then(data => {
-                /* Recupere toutes les emotions dans un tableau */
-                data.results[0].forEach(element => {
-                    this.emotion.push(element.feel)
-                });
-                this.userShared = data.results[1]
-                this.userOndemand = data.results[2]
-                this.reload = !this.reload
-              })
-          } else { /* sinon j'envoie une erreur */
-            response.json()
-            .then(data => {
-              console.log(data) /* renvoie error du backend sur le frontend */
-            })
-          }
-      })
+      getFeelingUser.then((data) => {
+        this.dataLoad = true 
+        data.results[0].forEach(element => {
+            this.emotion.push(element.feel)
+        });
+        this.userShared = data.results[1]
+        this.userOndemand = data.results[2]
+        this.reload = !this.reload
+      });
     },
     methods: {
       disconnect,

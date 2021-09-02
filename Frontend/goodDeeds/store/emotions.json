@@ -9,6 +9,11 @@
         "confused", "overcome", "depressed", "hopeless", "neglected", "isolated", "guilty", "regretful", "displeased", "dismayed", "disheartened", "miserable", "disturbed", "agonized", "revolted", "contemptuous",
          "envious", "resentful", "aggravated", "annoyed", "frustrated", "agitated", "hostile", "hateful", "dreadful", "mortified", "anxious", "worried", "inadequate", "inferior", "hysterical", "panicked", "helpless", 
         "frightened" ],
+    "positiveSimple": ["love", "joy", "suprise", "grateful", "happy",
+        "sentimental", "affectionate", "romantic", "enchanted", "euphoric", "excited", "optimistic", "proud", "cheerful", "content", "peaceful",
+        "moved", "amazed", "stunned"],
+    "negativeSimple": ["fear", "anger", "sadness", "scared", "terrifier", "insecure", "nervous", "horrfied", "enraged", "exasperated", "irritable",
+        "jealous", "disgusted", "hurt", "unhappy", "disappointed", "shameful", "lonely", "gloomy"],
     "main": [
             {
                 "feel":"joy",

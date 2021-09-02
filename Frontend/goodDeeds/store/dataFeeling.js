@@ -50,12 +50,12 @@ export function postFeeling (feeling, kindOfFeel) {
           if(response.ok){
               response.json()
               .then(data => {
-                  console.log(data)
+                window.alert(data.message)
               })
           } else {
               response.json()
               .then(data => {
-                  console.log(data)
+                window.alert(data.message)
               })
           }
       })
@@ -65,8 +65,8 @@ export function postFeeling (feeling, kindOfFeel) {
       /* compteur temps pour une prochaine activation des boutons */
       let timeValidation = Math.round(Date.now() / 1000)
       localStorage.setItem('lastValidation', timeValidation);
-
-  } else {
+      this.feeling = undefined
+    } else {
       console.log('selectionner une emotion')
   }  
 }

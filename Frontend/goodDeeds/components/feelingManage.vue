@@ -74,7 +74,8 @@
 
 <script>
 import emotions from '@/store/emotions'
-import { upperFirstLetter, postFeeling } from '@/store/functions'
+import { upperFirstLetter } from '@/store/functions' 
+import { postFeeling } from '@/store/dataFeeling'
 
 export default {
     data() {

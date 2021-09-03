@@ -1,31 +1,4 @@
-export const getFeelingUser = new Promise((resolve, reject) => {
-    let user_id = sessionStorage.getItem('userId')
-    let token = sessionStorage.getItem('token')
-    const userFeel = {user_id: user_id}
 
-    fetch("http://localhost:3000/api/feeling/", {
-    method: "POST",
-    headers: {
-    "content-type": "application/json",
-    "Authorization" : 'Bearer ' + token
-    },
-    body: JSON.stringify(userFeel)
-    })
-    
-    .then(response => {
-    if(response.ok) {
-        response.json()
-        .then(data => {
-          resolve(data)
-        })
-    } else { /* sinon j'envoie une erreur */
-      response.json()
-      .then(data => {
-        console.log(data) /* renvoie error du backend sur le frontend */
-      })
-    }
-    })
-});
 
 /*  CALL API FOR POSTFEELING */
 

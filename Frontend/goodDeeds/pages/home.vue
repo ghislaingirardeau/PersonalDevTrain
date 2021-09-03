@@ -28,7 +28,6 @@
 
 <script>
 import { upperFirstLetter, disconnect, updateUserShareArray } from '@/store/functions'
-import {getFeelingUser } from '@/store/dataFeeling'
 
 export default {
     data () {
@@ -42,20 +41,44 @@ export default {
         avatar: String
       }
     },
-    created () {
+    mounted () {
       
-      this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
-      this.avatar = sessionStorage.getItem('avatar')
+    this.pseudo = upperFirstLetter(sessionStorage.getItem('pseudo'))
+    this.avatar = sessionStorage.getItem('avatar')
+
+    let user_id = sessionStorage.getItem('userId')
+    let token = sessionStorage.getItem('token')
+    const userFeel = {user_id: user_id}
+
+    fetch("http://localhost:3000/api/feeling/", {
+      method: "POST",
+      headers: {
+      "content-type": "application/json",
+      "Authorization" : 'Bearer ' + token
+    },
+      body: JSON.stringify(userFeel)
+    })
+    
+    .then(response => {
+      if(response.ok) {
+          response.json()
+          .then(data => {
+            this.dataLoad = true 
+            data.results[0].forEach(element => {
+                this.emotion.push(element.feel)
+            });
+            this.userShared = data.results[1]
+            this.userOndemand = data.results[2]
+            this.reload = !this.reload
+          })
+      } else { 
+        response.json()
+        .then(data => {
+          console.log(data) 
+        })
+      }
+    })
       
-      getFeelingUser.then((data) => {
-        this.dataLoad = true 
-        data.results[0].forEach(element => {
-            this.emotion.push(element.feel)
-        });
-        this.userShared = data.results[1]
-        this.userOndemand = data.results[2]
-        this.reload = !this.reload
-      });
     },
     methods: {
       disconnect,

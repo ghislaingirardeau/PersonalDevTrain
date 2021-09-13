@@ -33,13 +33,11 @@
 
 <script>
 
-
 export default {
   data () {
     return {
       login: true,
-      signup: false
-      
+      signup: false,      
     }
   },
   methods: {
@@ -51,7 +49,7 @@ export default {
         this.login = false
         this.signup = true
     }
-  }
+  },
 }
 </script>
 

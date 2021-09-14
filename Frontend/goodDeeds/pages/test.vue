@@ -2,10 +2,18 @@
     <div>
     <h1>test audio</h1>
     <label for="">frequence</label>
-    <input type="range" min="0" max ="1600" step="100" v-model="frequence" @change="testAudio"> {{frequence}}
+    <input type="range" min="0" max ="1600" step="20" v-model="frequence" @change="testAudio"> {{frequence}}
+    <select id="type" v-model="oscillatorType">
+        <option value="sine">sine</option>
+        <option value="square">square</option>
+        <option value="sawtooth">sawtooth</option>
+        <option value="triangle">triangle</option>
+    </select>
     <button @click="testAudio">{{!mute ? 'Play' : 'Stop'}}</button>
     <button @click="micro">{{!mute ? 'Start' : 'Stop'}}</button>
     <p>{{frequenceResults}}</p>
+    <h2>change frequence avec la souris</h2>
+    <p @mousemove="updateCoordonate" class="border p-3"></p>
     </div>
 </template>
 
@@ -21,16 +29,19 @@ export default {
             audioCtx: 0,
             interval: 0,
             fftData: 0,
+            oscillatorType: "sine",
         }
     },
     computed: {
         frequenceResults() {
             if(this.fftData < -125) {
                     return "ok" + this.fftData
+                } else if(this.fftData === 0) {
+                    return "en attente de fréquence"
                 } else {
                     return "mauvaise"
                 }
-        }
+        },
     },
     methods: {
         testAudio() { /* creer un son a partir d'un oscillateur */
@@ -46,8 +57,8 @@ export default {
                 vm.analyser = audioCtx.createAnalyser();
                 vm.oscillator = audioCtx.createOscillator();
                 gainNode = audioCtx.createGain();
-                vm.oscillator.type = 'square';
-                vm.oscillator.frequency.setValueAtTime(vm.frequence, audioCtx.currentTime); // value in hertz
+                vm.oscillator.type = vm.oscillatorType;
+                vm.oscillator.frequency.value = vm.frequence; // value in hertz
                 vm.oscillator.connect(vm.analyser);
                 vm.analyser.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
@@ -56,7 +67,7 @@ export default {
                         var FFTData = new Float32Array(1024);
                         vm.analyser.getFloatFrequencyData(FFTData);
                         vm.fftData = FFTData[0]
-                    },2000);
+                    },1000);
 
             }
 
@@ -88,6 +99,11 @@ export default {
             }
             
         },
+        updateCoordonate(e) {
+            var vm = this
+            this.frequence = e.pageX
+            vm.oscillator.frequency.value = e.pageX
+        }
     }
 }
 </script>

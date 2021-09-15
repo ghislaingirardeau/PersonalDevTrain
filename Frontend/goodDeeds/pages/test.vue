@@ -3,7 +3,7 @@
     <h1>test audio</h1>
     <label for="">frequence</label>
     <input type="range" min="0" max ="1600" step="20" v-model="frequence" @change="testAudio"> {{frequence}}
-    <select id="type" v-model="oscillatorType">
+    <select id="type" v-model="oscillatorType"> 
         <option value="sine">sine</option>
         <option value="square">square</option>
         <option value="sawtooth">sawtooth</option>
@@ -12,8 +12,8 @@
     <button @click="testAudio">{{!mute ? 'Play' : 'Stop'}}</button>
     <button @click="micro">{{!mute ? 'Start' : 'Stop'}}</button>
     <p>{{frequenceResults}}</p>
-    <h2>change frequence avec la souris</h2>
-    <p @mousemove="updateCoordonate" class="border p-3"></p>
+    <h2>Modifie le volume (Y) et la frequence (X) avec la souris</h2>
+    <p @mousemove="updateCoordonate" class="border p-3" id="canvas"></p>
     </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
             audioCtx: 0,
             interval: 0,
             fftData: 0,
+            gainNode: 0,
             oscillatorType: "sine",
         }
     },
@@ -37,7 +38,7 @@ export default {
             if(this.fftData < -125) {
                     return "ok" + this.fftData
                 } else if(this.fftData === 0) {
-                    return "en attente de fréquence"
+                    return "en attente d'analyse"
                 } else {
                     return "mauvaise"
                 }
@@ -48,7 +49,6 @@ export default {
             this.mute = !this.mute
             var vm = this
             
-            var gainNode
             if(this.mute == false) {
                 vm.oscillator.stop();
                 clearInterval(vm.interval)
@@ -56,12 +56,12 @@ export default {
                 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 vm.analyser = audioCtx.createAnalyser();
                 vm.oscillator = audioCtx.createOscillator();
-                gainNode = audioCtx.createGain();
+                vm.gainNode = audioCtx.createGain();
                 vm.oscillator.type = vm.oscillatorType;
                 vm.oscillator.frequency.value = vm.frequence; // value in hertz
                 vm.oscillator.connect(vm.analyser);
-                vm.analyser.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
+                vm.analyser.connect(vm.gainNode);
+                vm.gainNode.connect(audioCtx.destination);
                 vm.oscillator.start();
                 vm.interval = setInterval(function(){
                         var FFTData = new Float32Array(1024);
@@ -70,17 +70,17 @@ export default {
                     },1000);
 
             }
-
-
         },
         micro() {
             this.mute = !this.mute
             var vm = this
 
             if (this.mute == false) {
-                /* vm.source.disconnect(vm.analyser);
+                vm.source.disconnect(vm.analyser);
                 vm.analyser.disconnect(vm.audioCtx.destination);
-                vm.audioCtx.close() */
+                vm.audioCtx.close()
+                clearInterval(vm.interval)
+                vm.source = 0
             } else {
                 navigator.mediaDevices.getUserMedia ({audio: true})
                 .then(function (stream) {
@@ -89,10 +89,10 @@ export default {
                 vm.source = vm.audioCtx.createMediaStreamSource(stream); /* je créée un nouveau stream */
                 vm.source.connect(vm.analyser);
                 vm.analyser.connect(vm.audioCtx.destination) /* Envoie le stream dans le haut parleur */
-                    setInterval(function(){
+                vm.interval = setInterval(function(){
                         var FFTData = new Float32Array(1024);
                         vm.analyser.getFloatFrequencyData(FFTData);
-                        console.log(vm.analyser.fftSize);
+                        console.log(FFTData[0]);
                     },1000);
                 })
 
@@ -101,9 +101,22 @@ export default {
         },
         updateCoordonate(e) {
             var vm = this
-            this.frequence = e.pageX
-            vm.oscillator.frequency.value = e.pageX
+            if(vm.gainNode != 0) {
+                vm.gainNode.gain.value = e.pageX /1000
+            }
+            if(vm.oscillator != 0) {
+                vm.oscillator.frequency.value = e.pageY * 1.5
+                console.log(e.clientY)
+            }
+            
         }
     }
 }
 </script>
+
+<style lang="scss">
+#canvas{
+    background: linear-gradient(to right, white, grey);
+    height: 400px;
+    }
+</style>

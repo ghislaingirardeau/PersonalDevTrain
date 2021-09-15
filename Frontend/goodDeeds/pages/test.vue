@@ -12,6 +12,11 @@
     <button @click="testAudio">{{!mute ? 'Play' : 'Stop'}}</button>
     <button @click="micro">{{!mute ? 'Start' : 'Stop'}}</button>
     <p>{{frequenceResults}}</p>
+
+    <div >
+        <button class="m-2" v-for="item in notes" :key="item.note" @click="frequenceNote(item.frequence)">{{item.note}}</button>
+    </div>
+
     <h2>Modifie le volume (Y) et la frequence (X) avec la souris</h2>
     <p @mousemove="updateCoordonate" class="border p-3" id="canvas"></p>
     </div>
@@ -31,6 +36,25 @@ export default {
             fftData: 0,
             gainNode: 0,
             oscillatorType: "sine",
+            notes: [{
+                note: "do",
+                frequence: 261},
+                {
+                note: "re",
+                frequence: 293},
+                {
+                note: "mi",
+                frequence: 329},
+                {
+                note: "fa",
+                frequence: 349},
+                {
+                note: "sol",
+                frequence: 392},
+                {
+                note: "la",
+                frequence: 440}
+                ]
         }
     },
     computed: {
@@ -40,7 +64,7 @@ export default {
                 } else if(this.fftData === 0) {
                     return "en attente d'analyse"
                 } else {
-                    return "mauvaise"
+                    return "mauvaise" + this.fftData
                 }
         },
     },
@@ -67,7 +91,7 @@ export default {
                         var FFTData = new Float32Array(1024);
                         vm.analyser.getFloatFrequencyData(FFTData);
                         vm.fftData = FFTData[0]
-                    },1000);
+                    },100);
 
             }
         },
@@ -95,9 +119,7 @@ export default {
                         console.log(FFTData[0]);
                     },1000);
                 })
-
             }
-            
         },
         updateCoordonate(e) {
             var vm = this
@@ -106,10 +128,12 @@ export default {
             }
             if(vm.oscillator != 0) {
                 vm.oscillator.frequency.value = e.pageY * 1.5
-                console.log(e.clientY)
             }
-            
-        }
+        },
+        frequenceNote(note) {
+            var vm = this
+            vm.oscillator.frequency.value = note
+            }
     }
 }
 </script>

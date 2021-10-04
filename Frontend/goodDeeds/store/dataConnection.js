@@ -15,7 +15,7 @@ export function postConnection (connectionType, post) {
         sessionStorage.setItem('pseudo', response.data.pseudo)
         sessionStorage.setItem('role', response.data.role)
         sessionStorage.setItem('avatar', response.data.avatar)
-        window.open('/home', '_self')
+        this.$router.push('home')
 
       })
       .catch((error) => this.errorMessage = error.response.data.message)

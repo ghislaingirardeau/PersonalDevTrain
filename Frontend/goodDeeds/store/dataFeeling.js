@@ -23,7 +23,7 @@ export function postFeeling (feeling, kindOfFeel) {
           if(response.ok){
               response.json()
               .then(data => {
-                window.alert(data.message)
+                /* window.alert(data.message) */
               })
           } else {
               response.json()

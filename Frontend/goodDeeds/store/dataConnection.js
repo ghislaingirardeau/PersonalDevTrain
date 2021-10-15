@@ -2,6 +2,14 @@
 
 import axios from "axios"
 export function postConnection (connectionType, post) {
+
+  /* TEST NUXT AUTH 
+  this.$auth.loginWith('local', {
+    data: post
+  })
+  .then(user => {
+    this.$auth.setUser(user)
+    }) */
     const data = JSON.stringify(post)
       axios.post("http://localhost:3000/api/" + connectionType, data, {
         headers: {

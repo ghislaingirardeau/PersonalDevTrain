@@ -3,6 +3,7 @@
   <div class="col-12">
 
     <h2 class="m-3">Espace de connexion</h2>
+    <!-- TEST NUXT AUTH <h2 v-if="$auth.loggedIn">{{$auth.user.data.pseudo}} {{$auth.user.data.avatar}}</h2> -->
 
     <form class="col-12">
       <label class="col-12 col-lg-4 m-3" for="pseudo" >Mon pseudo</label>
@@ -41,5 +42,7 @@ export default {
   methods: {
     postConnection
   },
+  mounted() {
+  }
 }
 </script>

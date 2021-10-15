@@ -61,8 +61,31 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    /* '@nuxtjs/auth-next' TEST NUXT AUTH */
   ],
+
+/*  TEST NUXT AUTH  
+    axios: {
+    baseURL: 'http://localhost:3000/api/'
+  }, */
+
+/*  TEST NUXT AUTH  
+    auth: {
+    strategies: {
+      local: {
+        user: {
+          property: 'user',
+          autoFetch: false
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          user: false,
+          logout: false,
+        }
+      }
+    }
+  }, */
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
